@@ -1,4 +1,5 @@
 function fetchNearestDrivers(db, coordinates, callback) {
+
     db.collection('driverData').createIndex({
         "location": "2dsphere"
     }, function() {
@@ -23,14 +24,14 @@ function fetchNearestDrivers(db, coordinates, callback) {
     });
 }
 function fetchDriverDetails(db, userId, callback) {
-    db.collection("DriverData").findOne({
+    db.collection("driverData").findOne({
         userId: userId
     }, function(err, results) {
         if (err) {
             console.log(err);
         } else {
             callback({
-                copId: results.userId,
+                driverId: results.userId,
                 displayName: results.displayName,
                 phone: results.phone,
                 location: results.location

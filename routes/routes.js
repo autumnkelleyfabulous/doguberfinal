@@ -24,7 +24,7 @@ app.get('/drivers/info', function(req, res){
         });
     });
 });
-//Listen to a 'request-a-ride' event from connected citizens
+//Listen to a 'request-a-ride' event from connected client's
 socket.on('request-a-ride', function(eventData) {
     /*
         eventData contains userId and location

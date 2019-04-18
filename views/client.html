@@ -36,7 +36,7 @@ Write rest of your JS code here -->
     var clientDetails = {};
     var map, marker;
 
-    //Citizen's info
+    //Client's info
 requestDetails = {
     clientId: userId,
     location: {
@@ -45,7 +45,7 @@ requestDetails = {
         longitude:  -105.162
     }
 }
-//When button is clicked, fire request-for-help and send citizen's userId and location
+//When button is clicked, fire request-for-help and send client's userId and location
 function requestARide(){
     socket.emit("request-a-ride", requestDetails);
 }
