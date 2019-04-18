@@ -1,52 +1,72 @@
 var http = require("http");
 var express = require("express");
-var consolidate = require("consolidate");//1
+var consolidate = require("consolidate"); //1
 var _ = require("underscore");
 var bodyParser = require('body-parser');
+
+// var io = require('socket.io')(http);
+// var io = require('socket.io')(server);
 // const express = require("express");
-const path = require("path");
+// const path = require("path");
 // const PORT = process.env.PORT || 3001;
-const app = express();
+// const app = express();
 
 
 var routes = require('./routes/routes'); //File that contains our endpoints
 var mongoClient = require("mongodb").MongoClient;
 
-// var app = express();
+var app = express();
 app.use(bodyParser.urlencoded({
-   extended: true,
+  extended: true,
 }));
-             
-app.use(bodyParser.json({limit: '5mb'}));
+
+app.use(bodyParser.json({
+  limit: '5mb'
+}));
 
 app.set('views', 'views'); //Set the folder-name from where you serve the html page. 
 app.use(express.static('./public')); //setting the folder name (public) where all the static files like css, js, images etc are made available
 
-app.set('view engine','html');
-app.engine('html',consolidate.underscore);
+app.set('view engine', 'html');
+app.engine('html', consolidate.underscore);
+
+var server = http.Server(app);
 var portNumber = 8000; //for locahost:8000
 
-http.createServer(app).listen(portNumber, function(){ //creating the server which is listening to the port number:8000, and calls a function within in which calls the initialize(app) function in the router module
-	console.log('Server listening at port '+ portNumber);
-	
-	var url = 'mongodb://localhost:27017/dogUberApp';
-	mongoClient.connect(url, function(err, db) { //a connection with the mongodb is established here.
-		console.log("Connected to Database");
-		routes.initialize(app, db); //function defined in routes.js which is exported to be accessed by other modules
-	});
-});
+var io = require('socket.io')(server); //Creating a new socket.io instance by passing the HTTP server object
 
-// // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+server.listen(portNumber, function () { //Runs the server on port 8000
+  console.log('Server listening at port ' + portNumber);
 
-// // Send every request to the React app
-// // Define any API routes before this runs
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+  // http.createServer(app).listen(portNumber, function () { //creating the server which is listening to the port number:8000, and calls a function within in which calls the initialize(app) function in the router module
+  //   console.log('Server listening at port ' + portNumber);
 
-// app.listen(PORT, function() {
-//   console.log(`🌎 ==> API server now on port ${PORT}!`);
-// });
+    var url = 'mongodb://localhost:27017/dogUberApp';
+    mongoClient.connect(url, function (err, db) { //a connection with the mongodb is established here.
+      console.log("Connected to Database");
+
+      // routes.initialize(app, db); //function defined in routes.js which is exported to be accessed by other modules
+      app.get('/client.html', function (req, res) {
+        res.render('client.html', {
+          userId: req.query.userId
+        });
+      });
+      app.get('/driver.html', function (req, res) {
+        res.render('driver.html', {
+          userId: req.query.userId
+        });
+      });
+
+      io.on('connection', function(socket) { //Listen on the 'connection' event for incoming sockets
+        console.log('A user just connected');
+
+        socket.on('join', function(data) { //Listen to any join event from connected users
+          socket.join(data.userId); //User joins a unique room/channel that's named after the userId 
+          console.log("User joined room: " + data.userId);
+        });
+
+        routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
+      });
+    });
+  });
+

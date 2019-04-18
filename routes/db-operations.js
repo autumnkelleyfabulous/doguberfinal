@@ -22,4 +22,41 @@ function fetchNearestDrivers(db, coordinates, callback) {
         });
     });
 }
+function fetchDriverDetails(db, userId, callback) {
+    db.collection("DriverData").findOne({
+        userId: userId
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback({
+                copId: results.userId,
+                displayName: results.displayName,
+                phone: results.phone,
+                location: results.location
+            });
+        }
+    });
+}
+//Saves details like citizen’s location, time
+function saveRequest(db, issueId, requestTime, location, clientId, status, callback){
+    db.collection('requestsData').insert({
+        "_id": issueId,
+        "requestTime": requestTime,
+        "location": location,
+        "clientId": clientId,
+        "status": status
+    }, function(err, results){
+           if(err) {
+               console.log(err);
+           }else{
+               callback(results);
+           }
+    });
+}
+
+exports.saveRequest = saveRequest;
+
+exports.fetchDriverDetails = fetchDriverDetails;
+
 exports.fetchNearestDrivers = fetchNearestDrivers;
