@@ -23,23 +23,24 @@ function fetchNearestDrivers(db, coordinates, callback) {
         });
     });
 }
-function fetchDriverDetails(db, userId, callback) {
+function fetchDriverDetails(db, _id, callback) {
     db.collection("driverData").findOne({
-        userId: userId
+        _id: _id
     }, function(err, results) {
         if (err) {
             console.log(err);
         } else {
             callback({
-                driverId: results.userId,
-                displayName: results.displayName,
+                // driverId: results.userId,
+                _id: results._id,
+                username: results.username,
                 phone: results.phone,
                 location: results.location
             });
         }
     });
 }
-//Saves details like citizen’s location, time
+//Saves details like c’s location, time
 function saveRequest(db, issueId, requestTime, location, clientId, status, callback){
     db.collection('requestsData').insert({
         "_id": issueId,
@@ -55,6 +56,24 @@ function saveRequest(db, issueId, requestTime, location, clientId, status, callb
            }
     });
 }
+function updateRequest(db, requestId, driverId, status, callback) {
+    db.collection('requestsData').update({
+        "_id": requestId //Perform update for the given requestId
+    }, {
+        $set: {
+            "status": status, //Update status to 'engaged'
+            "driverId": driverId  //save driver's userId
+        }
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback("Issue updated")
+        }
+    });
+}
+exports.updateRequest = updateRequest;
+
 
 exports.saveRequest = saveRequest;
 

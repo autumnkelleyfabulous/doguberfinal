@@ -49,7 +49,12 @@ requestDetails = {
 function requestARide(){
     socket.emit("request-a-ride", requestDetails);
 }
-
+//Listen for a "ride-accepted" event
+socket.on("ride-accepted", function(eventData){
+    copDetails = data; //Save driver details
+   //Display driver details
+    document.getElementById("notification").innerHTML = "Your Personal Pet Concierge Is On Their Way! \n" + JSON.stringify(driverDetails);
+});
    
 
 </script>

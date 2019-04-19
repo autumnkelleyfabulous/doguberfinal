@@ -13,6 +13,10 @@
       <div id="map"> 
           <!-- We will load a map here later-->
       </div>
+      <button onclick="acceptRide()">
+        Accept Ride
+    </button>
+
       <!--Load JavaScripts -->
       <!-- Load socket.io client library -->
 <script src="/socket.io/socket.io.js"></script>
@@ -20,6 +24,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- load libraries before your JS code
 Write rest of your JS code here -->
+
+
 <script type="text/javascript">
     var socket = io();
     //Fetch userId from the data-atribute of the body tag
@@ -50,14 +56,22 @@ $.ajax({
         console.log(error);
     }
 });
-//Listen for a "request-for-driver" event
-socket.on("request-for-driver", function(eventData){
+//Listen for a "request-a-ride" event
+socket.on("request-a-ride", function(eventData){
     //Once request is received, do this:
     //Save request details
     requestDetails = eventData; //Contains info of client
     //display the data received from the event
     document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(requestDetails);
 });
+
+function acceptRide(){
+    //Fire a "request-accepted" event/signal and send relevant info back to server
+    socket.emit("ride-accepted", {
+        requestDetails: requestDetails,
+        driverDetails: driverDetails
+    });
+ }
 
 </script>
   </body>
