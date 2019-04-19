@@ -4,14 +4,6 @@ var consolidate = require("consolidate"); //1
 var _ = require("underscore");
 var bodyParser = require('body-parser');
 
-// var io = require('socket.io')(http);
-// var io = require('socket.io')(server);
-// const express = require("express");
-// const path = require("path");
-// const PORT = process.env.PORT || 3001;
-// const app = express();
-
-
 var routes = require('./routes/routes'); //File that contains our endpoints
 var mongoClient = require("mongodb").MongoClient;
 
@@ -38,35 +30,30 @@ var io = require('socket.io')(server); //Creating a new socket.io instance by pa
 server.listen(portNumber, function () { //Runs the server on port 8000
   console.log('Server listening at port ' + portNumber);
 
-  // http.createServer(app).listen(portNumber, function () { //creating the server which is listening to the port number:8000, and calls a function within in which calls the initialize(app) function in the router module
-  //   console.log('Server listening at port ' + portNumber);
+  var url = 'mongodb://localhost:27017/dogUberApp';
+  mongoClient.connect(url, function (err, db) { //a connection with the mongodb is established here.
+    console.log("Connected to Database");
 
-    var url = 'mongodb://localhost:27017/dogUberApp';
-    mongoClient.connect(url, function (err, db) { //a connection with the mongodb is established here.
-      console.log("Connected to Database");
-
-      // routes.initialize(app, db); //function defined in routes.js which is exported to be accessed by other modules
-      app.get('/client.html', function (req, res) {
-        res.render('client.html', {
-          userId: req.query.userId
-        });
-      });
-      app.get('/driver.html', function (req, res) {
-        res.render('driver.html', {
-          userId: req.query.userId
-        });
-      });
-
-      io.on('connection', function(socket) { //Listen on the 'connection' event for incoming sockets
-        console.log('A user just connected');
-
-        socket.on('join', function(data) { //Listen to any join event from connected users
-          socket.join(data.userId); //User joins a unique room/channel that's named after the userId 
-          console.log("User joined room: " + data.userId);
-        });
-
-        routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
+    app.get('/client.html', function (req, res) {
+      res.render('client.html', {
+        userId: req.query.userId
       });
     });
-  });
+    app.get('/driver.html', function (req, res) {
+      res.render('driver.html', {
+        userId: req.query.userId
+      });
+    });
 
+    io.on('connection', function (socket) { //Listen on the 'connection' event for incoming sockets
+      console.log('A user just connected');
+
+      socket.on('join', function (data) { //Listen to any join event from connected users
+        socket.join(data.userId); //User joins a unique room/channel that's named after the userId 
+        console.log("User joined room: " + data.userId);
+      });
+
+      routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
+    });
+  });
+});

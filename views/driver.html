@@ -3,34 +3,43 @@
   <html lang = "en">
   <head>
       <meta charset="utf-8"/>
-      <title>Driver <%= userId %> </title>
+      <title>Driver <%= userID %> </title>
+      <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
   </head>
+
   <body data-userId="<%= userId %>">
       <h1>Hello Driver <%= userId %></h1>
-      <h4 id="notification"> 
-          <!-- Some info will be displayed here-->
-      </h4>
-      <div id="map"> 
-          <!-- We will load a map here later-->
-      </div>
+      <h2> Driver Details: </h2>
+      <div id ="driverDetails"></div>
+    
+      <h4 id="notification"> Waiting For Requests...</h4>
+
       <button onclick="acceptRide()">
         Accept Ride
     </button>
+
+    
+   
+      <div id="map"> 
+          <!-- We will load a map here later-->
+      </div>
+     
 
       <!--Load JavaScripts -->
       <!-- Load socket.io client library -->
 <script src="/socket.io/socket.io.js"></script>
 <!-- Load JQuery from a CDN -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- load libraries before your JS code
-Write rest of your JS code here -->
 
+<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<!-- load libraries before your JS code
+Write rest of JS code here -->
 
 <script type="text/javascript">
     var socket = io();
-    //Fetch userId from the data-atribute of the body tag
+    //Fetch username from the data-atribute of the body tag
     var userId = document.body.getAttribute("data-userId");
-    /*Fire a 'join' event and send your userId to the server, to join a room - room-name will be the userId itself!
+    /*Fire a 'join' event and send your username to the server, to join a room - room-name will be the username itself!
 */ 
     socket.emit('join', {userId: userId});
 //Declare variables, this will be used later
@@ -40,7 +49,7 @@ Write rest of your JS code here -->
 
 //First send a GET request using JQuery AJAX and get the driver's details and save it
 $.ajax({
-    url: "/drivers/info?userId="+userId,
+    url: "/drivers/info?userId=" + userId,
     type: "GET",
     dataType: "json",
     success: function(data){ //Once response is successful
@@ -49,7 +58,8 @@ $.ajax({
             address: driverDetails.location.address,
             longitude: driverDetails.location.coordinates[0],
             latitude: driverDetails.location.coordinates[1] 
-        };
+        }
+        
         document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
     },
     error: function(httpRequest, status, error){

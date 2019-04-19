@@ -23,16 +23,16 @@ function fetchNearestDrivers(db, coordinates, callback) {
         });
     });
 }
-function fetchDriverDetails(db, _id, callback) {
+function fetchDriverDetails(db, userId, callback) {
     db.collection("driverData").findOne({
-        _id: _id
+        userId: userId
     }, function(err, results) {
         if (err) {
             console.log(err);
         } else {
             callback({
-                // driverId: results.userId,
-                _id: results._id,
+                // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
+                DriverId: results.DriverId,
                 username: results.username,
                 phone: results.phone,
                 location: results.location
@@ -40,10 +40,10 @@ function fetchDriverDetails(db, _id, callback) {
         }
     });
 }
-//Saves details like c’s location, time
-function saveRequest(db, issueId, requestTime, location, clientId, status, callback){
+//Saves details like client’s location, time
+function saveRequest(db, requestId, requestTime, location, clientId, status, callback){
     db.collection('requestsData').insert({
-        "_id": issueId,
+        "_id": requestId,
         "requestTime": requestTime,
         "location": location,
         "clientId": clientId,
@@ -72,11 +72,13 @@ function updateRequest(db, requestId, driverId, status, callback) {
         }
     });
 }
+
+exports.fetchNearestDrivers = fetchNearestDrivers;
+exports.fetchDriverDetails = fetchDriverDetails;
+exports.saveRequest = saveRequest;
 exports.updateRequest = updateRequest;
 
 
-exports.saveRequest = saveRequest;
 
-exports.fetchDriverDetails = fetchDriverDetails;
 
-exports.fetchNearestDrivers = fetchNearestDrivers;
+

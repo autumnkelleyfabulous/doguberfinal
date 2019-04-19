@@ -60,7 +60,7 @@ socket.on('request-a-ride', function(eventData) {
     });
 });
 
-socket.on('request-accepted', function(eventData) { //Listen to a 'request-accepted' event from connected drivers
+socket.on('ride-accepted', function(eventData) { //Listen to a 'ride-accepted' event from connected drivers
 console.log(eventData);
 //Convert string to MongoDb's ObjectId data-type
 var ObjectID = require('mongodb').ObjectID;
@@ -69,10 +69,14 @@ var requestId = new ObjectID(eventData.requestDetails.requestId);
 //Then update the request in the database with the driver details for given requestId
 dbOperations.updateRequest(db, requestId, eventData.driverDetails.driverId, 'engaged', function(results) {
     //After updating the request, emit a 'request-accepted' event to the client and send driver details
-    io.sockets.in(eventData.requestDetails.clientId).emit('request-accepted', eventData.driverDetails);
+    io.sockets.in(eventData.requestDetails.clientId).emit('ride-accepted', eventData.driverDetails);
 })
 
 });
+
+
+ 
+
     // app.get('/clients', function(req, res){
 
     // })
