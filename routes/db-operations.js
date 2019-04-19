@@ -33,7 +33,7 @@ function fetchDriverDetails(db, userId, callback) {
         } else {
             callback({
                 // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
-                DriverId: results.DriverId,
+                userId: results.userId,
                 username: results.username,
                 phone: results.phone,
                 location: results.location

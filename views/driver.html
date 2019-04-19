@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <title>Driver <%= userId %> </title>
   <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
+  
 </head>
 
 <body data-userId="<%= userId %>">
@@ -28,6 +29,9 @@
   <!--Load JavaScripts -->
   <!-- Load socket.io client library -->
   <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
   <!-- Load JQuery from a CDN -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -51,6 +55,7 @@ Write rest of JS code here -->
 
     //First send a GET request using JQuery AJAX and get the driver's details and save it
     $.ajax({
+      
       url: "/drivers/info?userId=" + userId,
       type: "GET",
       dataType: "json",
@@ -61,7 +66,7 @@ Write rest of JS code here -->
           longitude: driverDetails.location.coordinates[0],
           latitude: driverDetails.location.coordinates[1]
         }
-
+       
         document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
 
         L.mapbox.accessToken =
@@ -69,9 +74,9 @@ Write rest of JS code here -->
         //Load the map and give it a default style
         map = L.mapbox.map("map", "mapbox.streets");
         //set it to a cop's lat-lng and zoom level
-        map.setView([copDetails.location.latitude, copDetails.location.longitude], 9);
+        map.setView([driverDetails.location.latitude, driverDetails.location.longitude], 9);
         //Display a default marker
-        marker = L.marker([copDetails.location.latitude, copDetails.location.longitude]).addTo(map);
+        marker = L.marker([driverDetails.location.latitude, driverDetails.location.longitude]).addTo(map);
         //This will display an input box
         map.addControl(L.mapbox.geocoderControl("mapbox.places", {
           autocomplete: true, //will suggest for places as you type
@@ -81,12 +86,8 @@ Write rest of JS code here -->
           console.log(data);
           //Do something with the results
           //Set the marker to new location
-          marker.setLatLng([
-            data.feature.center[1],
-            data.feature.center[0]
-          ]);
+          marker.setLatLng([data.feature.center[1],data.feature.center[0]]);
         }));
-
       },
       error: function (httpRequest, status, error) {
         console.log(error);
@@ -103,10 +104,7 @@ Write rest of JS code here -->
     });
 
     //Show citizen location on the map
-L.marker([
-    requestDetails.location.latitude,
-    requestDetails.location.longitude
-],{
+L.marker([requestDetails.location.latitude, requestDetails.location.longitude] ,{
     icon: L.icon({
        iconUrl: "./public/img/dogpin.jpg",
        iconSize: [50,50]

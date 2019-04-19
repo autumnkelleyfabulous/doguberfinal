@@ -3,7 +3,7 @@ var express = require("express");
 var consolidate = require("consolidate"); //1
 var _ = require("underscore");
 var bodyParser = require('body-parser');
-
+// var socket = io();
 
 
 var routes = require('./routes/routes'); //File that contains our endpoints
@@ -33,7 +33,7 @@ var portNumber = 8000; //for locahost:8000
 var io = require('socket.io')(server); //Creating a new socket.io instance by passing the HTTP server object
 
 // socket.createServer(app).listen(portNumber, function () { //creating the server which is listening to the port number:8000, and calls a function within in which calls the initialize(app) function in the router module
-  //   console.log('Server listening at port ' + portNumber);
+//     console.log('Server listening at port ' + portNumber);
 
 server.listen(portNumber, function () { //Runs the server on port 8000
   console.log('Server listening at port ' + portNumber);
@@ -43,15 +43,18 @@ server.listen(portNumber, function () { //Runs the server on port 8000
     console.log("Connected to Database");
 
     app.get('/client.html', function (req, res) {
+      console.log("Client List")
       res.render('client.html', {
-        userId: req.query.userId
+        userId: req.query.userId,
+        username: req.query.username,
       });
     });
     app.get('/driver.html', function (req, res) {
       res.render('driver.html', {
         userId: req.query.userId,
         username: req.query.username,
-        
+        phone: req.query.phone,
+
       });
     });
 
@@ -66,4 +69,5 @@ server.listen(portNumber, function () { //Runs the server on port 8000
       routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
     });
   });
+
 });
