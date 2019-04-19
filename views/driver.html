@@ -1,88 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  <!DOCTYPE html>
-  <html lang = "en">
-  <head>
-      <meta charset="utf-8"/>
-      <title>Driver <%= userID %> </title>
-      <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Driver <%= userID %> </title>
+  <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
+</head>
 
-  <body data-userId="<%= userId %>">
-      <h1>Hello Driver <%= userId %></h1>
-      <h2> Driver Details: </h2>
-      <div id ="driverDetails"></div>
-    
-      <h4 id="notification"> Waiting For Requests...</h4>
+<body data-userId="<%= userId %>">
+  <h1>Hello Driver <%= userId %></h1>
+  <h2> Driver Details: </h2>
+  <div id="driverDetails"></div>
 
-      <button onclick="acceptRide()">
-        Accept Ride
-    </button>
+  <h4 id="notification"> Waiting For Requests...</h4>
 
-    
-   
-      <div id="map"> 
-          <!-- We will load a map here later-->
-      </div>
-     
+  <button onclick="acceptRide()">
+    Accept Ride
+  </button>
 
-      <!--Load JavaScripts -->
-      <!-- Load socket.io client library -->
-<script src="/socket.io/socket.io.js"></script>
-<!-- Load JQuery from a CDN -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<!-- load libraries before your JS code
+
+  <div id="map">
+    <!-- We will load a map here later-->
+  </div>
+
+
+  <!--Load JavaScripts -->
+  <!-- Load socket.io client library -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Load JQuery from a CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+  <!-- load libraries before your JS code
 Write rest of JS code here -->
 
-<script type="text/javascript">
+  <script type="text/javascript">
     var socket = io();
     //Fetch username from the data-atribute of the body tag
     var userId = document.body.getAttribute("data-userId");
     /*Fire a 'join' event and send your username to the server, to join a room - room-name will be the username itself!
-*/ 
-    socket.emit('join', {userId: userId});
-//Declare variables, this will be used later
+     */
+    socket.emit('join', {
+      userId: userId
+    });
+    //Declare variables, this will be used later
     var requestDetails = {};
     var driverDetails = {};
     var map, marker;
 
-//First send a GET request using JQuery AJAX and get the driver's details and save it
-$.ajax({
-    url: "/drivers/info?userId=" + userId,
-    type: "GET",
-    dataType: "json",
-    success: function(data){ //Once response is successful
+    //First send a GET request using JQuery AJAX and get the driver's details and save it
+    $.ajax({
+      url: "/drivers/info?userId=" + userId,
+      type: "GET",
+      dataType: "json",
+      success: function (data) { //Once response is successful
         driverDetails = data.driverDetails; //Save the driver details
         driverDetails.location = {
-            address: driverDetails.location.address,
-            longitude: driverDetails.location.coordinates[0],
-            latitude: driverDetails.location.coordinates[1] 
+          address: driverDetails.location.address,
+          longitude: driverDetails.location.coordinates[0],
+          latitude: driverDetails.location.coordinates[1]
         }
-        
-        document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
-    },
-    error: function(httpRequest, status, error){
-        console.log(error);
-    }
-});
-//Listen for a "request-a-ride" event
-socket.on("request-a-ride", function(eventData){
-    //Once request is received, do this:
-    //Save request details
-    requestDetails = eventData; //Contains info of client
-    //display the data received from the event
-    document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(requestDetails);
-});
 
-function acceptRide(){
-    //Fire a "request-accepted" event/signal and send relevant info back to server
-    socket.emit("ride-accepted", {
+        document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
+
+        L.mapbox.accessToken =
+          "sk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5nYWM5bjFnYzkzem1pN2U5ZDZvZ2oifQ.FG5vY610uWrGKrMBmy07bg";
+        //Load the map and give it a default style
+        map = L.mapbox.map("map", "mapbox.streets");
+        //set it to a cop's lat-lng and zoom level
+        map.setView([copDetails.location.latitude, copDetails.location.longitude], 9);
+        //Display a default marker
+        marker = L.marker([copDetails.location.latitude, copDetails.location.longitude]).addTo(map);
+        //This will display an input box
+        map.addControl(L.mapbox.geocoderControl("mapbox.places", {
+          autocomplete: true, //will suggest for places as you type
+        }).on("select", function (data) {
+          //This function runs when a place is selected
+          //data contains the geocoding results
+          console.log(data);
+          //Do something with the results
+          //Set the marker to new location
+          marker.setLatLng([
+            data.feature.center[1],
+            data.feature.center[0]
+          ]);
+        }));
+
+      },
+      error: function (httpRequest, status, error) {
+        console.log(error);
+      }
+    });
+    //Listen for a "request-a-ride" event
+    socket.on("request-a-ride", function (eventData) {
+      //Once request is received, do this:
+      //Save request details
+      requestDetails = eventData; //Contains info of client
+      //display the data received from the event
+      document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(
+        requestDetails);
+    });
+
+    //Show citizen location on the map
+L.marker([
+    requestDetails.location.latitude,
+    requestDetails.location.longitude
+],{
+    icon: L.icon({
+       iconUrl: "./public/img/dogpin.jpg",
+       iconSize: [50,50]
+    })
+}).addTo(map);
+
+    function acceptRide() {
+      //Fire a "request-accepted" event/signal and send relevant info back to server
+      socket.emit("ride-accepted", {
         requestDetails: requestDetails,
         driverDetails: driverDetails
-    });
- }
+      });
+    }
+  </script>
+</body>
 
-</script>
-  </body>
-  </html>
+</html>
