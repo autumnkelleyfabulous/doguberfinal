@@ -4,10 +4,16 @@ var consolidate = require("consolidate"); //1
 var _ = require("underscore");
 var bodyParser = require('body-parser');
 
+
+
 var routes = require('./routes/routes'); //File that contains our endpoints
 var mongoClient = require("mongodb").MongoClient;
 
 var app = express();
+// var app = require('express').createServer()
+//   , io = require('socket.io').listen(app);
+
+
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
@@ -24,8 +30,10 @@ app.engine('html', consolidate.underscore);
 
 var server = http.Server(app);
 var portNumber = 8000; //for locahost:8000
-
 var io = require('socket.io')(server); //Creating a new socket.io instance by passing the HTTP server object
+
+// socket.createServer(app).listen(portNumber, function () { //creating the server which is listening to the port number:8000, and calls a function within in which calls the initialize(app) function in the router module
+  //   console.log('Server listening at port ' + portNumber);
 
 server.listen(portNumber, function () { //Runs the server on port 8000
   console.log('Server listening at port ' + portNumber);
@@ -41,7 +49,9 @@ server.listen(portNumber, function () { //Runs the server on port 8000
     });
     app.get('/driver.html', function (req, res) {
       res.render('driver.html', {
-        userId: req.query.userId
+        userId: req.query.userId,
+        username: req.query.username,
+        
       });
     });
 

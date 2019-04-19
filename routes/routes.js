@@ -1,12 +1,14 @@
 var dbOperations = require('./db-operations');
 
 function initialize(app, db, socket, io) { 
-    // '/drivers?lat=12.9718915&&lng=77.64115449999997'
+
     app.get('/drivers', function(req, res){
+        // pull the latitude and longitude info from the request.
         //Convert the query strings into Numbers
         var latitude = Number(req.query.lat);
         console.log("Lat: " + latitude)
         var longitude = Number(req.query.lng);
+
         dbOperations.fetchNearestDrivers(db, [longitude,latitude], function(results){
         //return the results back to the client in the form of JSON
             res.json({
@@ -74,16 +76,32 @@ dbOperations.updateRequest(db, requestId, eventData.driverDetails.driverId, 'eng
 
 });
 
+app.get('/requests/info', function(req, res) {
+    dbOperations.fetchRequests(db, function(results) {
+        var features = [];
+        for (var i = 0; i < results.length; i++) {
+            features.push({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: results[i].location.coordinates
+                },
+                properties: {
+                    status: results[i].status,
+                    requestTime: results[i].requestTime,
+                    address: results[i].location.address
+                }
+            })
+        }
+        var geoJsonData = {
+            type: 'FeatureCollection',
+            features: features
+        }
 
- 
+        res.json(geoJsonData);
+    });
+});
 
-    // app.get('/clients', function(req, res){
-
-    // })
 }
-    //A GET request to /drivers should return back the nearest drivers in the vicinity.
-
-    /*extract the latitude and longitude info from the request. Then, fetch the nearest drivers using MongoDB's geospatial queries and return it back to the client.
-    */
-
+   
 exports.initialize = initialize;
