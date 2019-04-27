@@ -70,7 +70,6 @@ server.listen(portNumber, function() { //Runs the server on port 8000
             routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
           });
         });
-
     });
 
 // var socket = io();

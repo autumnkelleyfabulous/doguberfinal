@@ -37,60 +37,61 @@ function fetchNearestdriverdata(db, coordinates, callback) {
 // }
     
 
-// function fetchDriverDetails(db, username, callback) {
-//     db.collection("driverdata").findOne({
-//         username: username
-//     }, function(err, results) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             callback({
-//                 // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
-//                 // user: results.userId,
-//                 driverusername: results.username,
-//                 phone: results.phone,
-//                 location: results.location
-//             });
-//         }
-//     });
-// }
+function fetchDriverDetails(db, userId, callback) {
+    db.collection("driverdata").findOne({
+        userId: userId,
+        // username: username
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback({
+                // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
+                userId: results.userId,
+                username: results.username,
+                phone: results.phone,
+                location: results.location
+            });
+        }
+    });
+}
 // // //Saves details like client’s location, time
-// function saveRequest(db, requestId, requestTime, location, clientId, status, callback){
-//     db.collection('requestsdata').insert({
-//         "_id": requestId,
-//         "requestTime": requestTime,
-//         "location": location,
-//         "clientId": clientId,
-//         "status": status
-//     }, function(err, results){
-//            if(err) {
-//                console.log(err);
-//            }else{
-//                callback(results);
-//            }
-//     });
-// }
-// function updateRequest(db, issueId, driverusername, status, callback) {
-//     db.collection('requestsdata').update({
-//         "_id": issueId 
-//     }, {
-//         $set: {
-//             "status": status, //Update status to 'engaged'
-//             "driverusername": driverusername //save driver's userId
-//         }
-//     }, function(err, results) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             callback("Issue updated")
-//         }
-//     });
-// }
+function saveRequest(db, issueId, requestTime, location, clientusername, status, callback){
+    db.collection('requestsdata').insert({
+        "_id": issueId,
+        "requestTime": requestTime,
+        "location": location,
+        "clientusername": clientusername,
+        "status": status
+    }, function(err, results){
+           if(err) {
+               console.log(err);
+           }else{
+               callback(results);
+           }
+    });
+}
+function updateRequest(db, requestId, driverId, status, callback) {
+    db.collection('requestsdata').update({
+        "_id": requestId 
+    }, {
+        $set: {
+            "status": status, //Update status to 'engaged'
+            "driverId": driverId //save driver's userId
+        }
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback("Issue updated")
+        }
+    });
+}
 
 exports.fetchNearestdriverdata = fetchNearestdriverdata;
-// exports.fetchDriverDetails = fetchDriverDetails;
-// exports.saveRequest = saveRequest;
-// exports.updateRequest = updateRequest;
+exports.fetchDriverDetails = fetchDriverDetails;
+exports.saveRequest = saveRequest;
+exports.updateRequest = updateRequest;
 
 
 

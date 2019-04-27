@@ -49,28 +49,28 @@
         var map, marker;
 
         //Client's info
-//         requestDetails = {
-//             clientId: username,
-//             location: {
-//                 address: "1366 Kennedy Ave, Louisville, Colorado 80027, USA",
-//                 latitude: 39.983,
-//                 longitude: -105.1616
-//             }
-//         }
+        requestDetails = {
+            clientusername: username,
+            location: {
+                address: "1366 Kennedy Ave, Louisville, Colorado 80027, USA",
+                latitude: 39.983,
+                longitude: -105.1616
+            }
+        }
 
 // //         //When button is clicked, fire request-for-help and send client's userId and location
-//         function requestARide() {
-//             socket.emit("request-a-ride", requestDetails);
-//         }
+        function requestARide() {
+            socket.emit("request-a-ride", requestDetails);
+        }
 
 //         //Listen for a "ride-accepted" event
-//         socket.on("ride-accepted", function (data) {
-//             driverDetails = data; //Save driver details
+        socket.on("ride-accepted", function (data) {
+            driverDetails = data; //Save driver details
 
-//             //Display driver details
-//             document.getElementById("notification").innerHTML =
-// "Your Personal Pet Concierge Is On Their Way! \n" + JSON.stringify(driverDetails);
-
+            //Display driver details
+            document.getElementById("notification").innerHTML =
+"Your Personal Pet Concierge Is On Their Way! \n" + JSON.stringify(driverDetails);
+        });
 //             //Show cop location on the map
 //             L.marker([driverDetails.location.latitude, driverDetails.location.longitude], {
 //                 icon: L.icon({
