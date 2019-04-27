@@ -18,14 +18,11 @@ function initialize(app, db, socket, io) {
 
         });
     });
-
-
-    // //         });  
-    // //     });
-
+             
     // // // GET request to 'http://localhost:8000/driverdata/info?username=DreamingOutloud'
-    // http://localhost:8000/driver.html?userId=DreamingOutloud
+
     app.get('/driverdata/info?', function (req, res) {
+        // var userId = req.query.userId 
         var username = req.query.username //extract userId from query params
         dbOperations.fetchDriverDetails(db, username, function (results) {
             res.json({
@@ -83,32 +80,33 @@ socket.on('ride-accepted', function (eventData) { //Listen to a 'ride-accepted' 
                 io.sockets.in(eventData.requestDetails.clientId).emit('ride-accepted', eventData.driverDetails);
             })
             });
-        }
-            // app.get('/requests/info', function(req, res) {
-            //     dbOperations.fetchRequests(db, function(results) {
-            //         var features = [];
-            //         for (var i = 0; i < results.length; i++) {
-            //             features.push({
-            //                 type: 'Feature',
-            //                 geometry: {
-            //                     type: 'Point',
-            //                     coordinates: results[i].location.coordinates
-            //                 },
-            //                 properties: {
-            //                     status: results[i].status,
-            //                     requestTime: results[i].requestTime,
-            //                     address: results[i].location.address
-            //                 }
-            //             })
-            //         }
-            //         var geoJsonData = {
-            //             type: 'FeatureCollection',
-            //             features: features
-            //         }
+        
+            app.get('/requests/info', function(req, res) {
+                dbOperations.fetchRequests(db, function(results) {
+                    var features = [];
+                    for (var i = 0; i < results.length; i++) {
+                        features.push({
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: results[i].location.coordinates
+                            },
+                            properties: {
+                                status: results[i].status,
+                                requestTime: results[i].requestTime,
+                                address: results[i].location.address
+                            }
+                        })
+                    }
+                    var geoJsonData = {
+                        type: 'FeatureCollection',
+                        features: features
+                    }
 
-            //         res.json(geoJsonData);
-            //     });
-            // });
+                    res.json(geoJsonData);
+                });
+            });
+        }
 
 
             exports.initialize = initialize;
