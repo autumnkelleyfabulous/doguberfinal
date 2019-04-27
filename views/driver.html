@@ -15,7 +15,7 @@
 
   <h4 id="notification"> Waiting For Requests...</h4>
 
-  <button onclick="AcceptRide()">
+  <button onclick="acceptRide()">
     Accept Ride
   </button>
 
@@ -57,7 +57,7 @@ console.log("Driver Connected");
     //First send a GET request using JQuery AJAX and get the driver's details and save it
     $.ajax({
       
-      url: "/driverdata/info?userId="+ username,
+      url: "/driverdata/info?username="+ username,
       type: "GET",
       dataType: "json",
       success: function(data) { //Once response is successful
@@ -114,10 +114,9 @@ L.marker([requestDetails.location.latitude, requestDetails.location.longitude], 
     })
 }).addTo(map);
     
-
-
     function acceptRide() {
       //Fire a "request-accepted" event/signal and send relevant info back to server
+      console.log("buton")
       socket.emit("ride-accepted", {
         requestDetails: requestDetails,
         driverDetails: driverDetails
