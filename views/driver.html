@@ -15,9 +15,9 @@
 
   <h4 id="notification"> Waiting For Requests...</h4>
 
-  <!-- <button onclick="AcceptRide()">
+  <button onclick="AcceptRide()">
     Accept Ride
-  </button> -->
+  </button>
 
   <!-- <div id="map" style="width: 600px; height: 400px;"" > </div> -->
     <!--  load a map here later-->
@@ -25,19 +25,21 @@
 
   <!--Load JavaScripts -->
   <!-- Load socket.io client library -->
-  <!-- <script src="/socket.io/socket.io.js"> </script> -->
+  <script src="/socket.io/socket.io.js"> </script>
  
   <!-- Load JQuery from a CDN -->
-  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <script type="text/javascript" 
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script> -->
+
   <!-- load libraries before your JS code
 Write rest of JS code here  -->
 
-  <!-- <script type="text/javascript"> 
- var socket = io(); -->
+  <script type="text/javascript"> 
+ var socket = io();
 
 
-    <!-- // var socket = io.connect('http://localhost:8000');
+    // var socket = io.connect('http://localhost:8000');
     // socket.on("connect", function(data) {
     //   socket.emit('join', "Hello From DOG UBER");
     // });
@@ -53,34 +55,34 @@ Write rest of JS code here  -->
     var map, marker;
 console.log("Driver Connected");
     //First send a GET request using JQuery AJAX and get the driver's details and save it
-    $.ajax({
+//     $.ajax({
       
-      url: "/driverdata/info?username=" + username,
-      type: "GET",
-      dataType: "json",
-      success: function(data) { //Once response is successful
-        driverDetails = data.driverDetails; //Save the driver details
-        driverDetails.location = {
-          address: driverDetails.location.address,
-          longitude: driverDetails.location.coordinates[0],
-          latitude: driverDetails.location.coordinates[1]
-        };
+//       url: "/driverdata/info?username=" + username,
+//       type: "GET",
+//       dataType: "json",
+//       success: function(data) { //Once response is successful
+//         driverDetails = data.driverDetails; //Save the driver details
+//         driverDetails.location = {
+//           address: driverDetails.location.address,
+//           longitude: driverDetails.location.coordinates[0],
+//           latitude: driverDetails.location.coordinates[1]
+//         };
        
-        document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
-      },
-      error: function(httpRequest, status, error){
-        console.log(error);
-    }
-});
+//         document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
+//       },
+//       error: function(httpRequest, status, error){
+//         console.log(error);
+//     }
+// });
 
-//Listen for a "request-a-ride" event
-    socket.on("request-a-ride", function (eventData) {
-//       //Once request is received, do this:
-//       //Save request details
-      requestdetails = eventData; //Contains info of client
-//       //display the data received from the event
-      document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(requestDetails);
-    });
+// //Listen for a "request-a-ride" event
+//     socket.on("request-a-ride", function (eventData) {
+// //       //Once request is received, do this:
+// //       //Save request details
+//       requestdetails = eventData; //Contains info of client
+// //       //display the data received from the event
+//       document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(requestDetails);
+//     });
 
 //         L.mapbox.accessToken =
 //           "pk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5mNnUyZzA1MTQzeXBpdnc3dWNhcjgifQ.s219dVd-z6iQ0FKNHhnMNQ";
@@ -128,7 +130,7 @@ console.log("Driver Connected");
 //         driverDetails: driverDetails
 //       });
 //     }
-  </script>  -->
+  </script> 
 </body>
 
 </html>
