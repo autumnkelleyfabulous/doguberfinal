@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Client <%= username %> </title>
+    <link rel="stylesheet" href="/public/style.css">
 
+    <title>Client <%= username %> </title>
     <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
 
 </head>
@@ -12,7 +13,10 @@
 <body data-username="<%= username %>">
 
     <h1>Hello Client <%= username %></h1>
-    <h4 id="notification">  </h4>
+   <h2> Driver Details: </h2>
+    <div id="driverDetails"></div>
+
+    <h4 id="notification"> Your Personal Pet Concierge Is On Their Way! </h4>
 
     <button onclick="requestARide()">
         Request A Ride
@@ -70,10 +74,7 @@
             //Display driver details
             document.getElementById("notification").innerHTML =
                 "Your Personal Pet Concierge Is On Their Way! \n" + JSON.stringify(driverDetails);
-
-           
         });
-
 
         L.mapbox.accessToken =
             "pk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5mNnUyZzA1MTQzeXBpdnc3dWNhcjgifQ.s219dVd-z6iQ0FKNHhnMNQ";
