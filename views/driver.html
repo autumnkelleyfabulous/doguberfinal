@@ -4,11 +4,58 @@
 <head>
   <meta charset="utf-8" />
   <title> Driver <%= username %> </title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
   
 </head>
 
-<body data-username="<%= username %>">
+<body>
+    <div id="wrapper">
+        <!--Header-->
+        <header id="header">
+          <!--Main header-->
+          <div class="mainHeader">
+            <!--Container-->
+            <div class="container clearfix">
+              <div class="one-third column">
+                <!--Logo-->
+                <div class="logo">
+                  <a href="project.html">
+                    <h1>DOG UBER</h1>
+                  </a>
+                </div>
+                <!--End logo-->
+              </div>
+              <div class="two-thirds column">
+                <!--Navigation-->
+                <nav id="mainNav">
+                  <a href="#" class="mobileBtn"><i class="icon-menu"></i></a>
+                  <ul>
+                    <li><a href="client">Rider</a></li>
+                    <li><a href="driver">Driver</a></li>
+                    <li><a href="home.html#contact">Sign Up</a></li>
+                  </ul>
+                </nav>
+                <!--End navigation-->
+              </div>
+              <!--End container-->
+            </div>
+            <!--End main header-->
+            <!--Top socials-->
+            <!-- <div class="topSocials">
+              <ul class="one columns">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-gplus"></i></a></li>
+              </ul>
+              <ul class="one columns">
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-pinterest"></i></a></li>
+              </ul>
+            </div> -->
+            <!--End top socials-->
+          </div>
+        </header>
+  <div data-username="<%= username %>">
   <h1>Hello Driver <%= username %></h1>
   <h2> Driver Details: </h2>
   <div id="driverDetails"></div>

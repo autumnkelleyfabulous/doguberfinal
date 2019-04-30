@@ -36,15 +36,19 @@ server.listen(portNumber, function() { //Runs the server on port 8000
     var url = 'mongodb://localhost:27017/dogUberApp';
     mongoClient.connect(url, function (err, db) { //a connection with the mongodb is established here.
       console.log("Connected to Database");
-    
-      app.get('/client.html', function (req, res) {
+
+      app.get("/", function (req, res) {
+        res.render('project.html')
+      })
+
+      app.get('/client', function (req, res) {
         console.log("Client List")
         res.render('client.html', {
           // userId: req.query.userId,
           username: req.query.username,
         });
       });
-      app.get('/driver.html', function (req, res) {
+      app.get('/driver', function (req, res) {
         console.log("Driver List")
         res.render('driver.html', {
           // userId: req.query.userId,

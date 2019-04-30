@@ -1,18 +1,16 @@
-/*Preloader*/
-
 
 /*Wrapper*/
-#wrapper{
+/* #wrapper{
 	position:relative;
 	width:100%;
-}
+} */
 
 /*End wrapper*/
 
 
 /*Header*/
 
-header{
+/* header{
 	background:#ffffff;
 	position:fixed;
 	width:100%;
@@ -92,10 +90,10 @@ nav#mainNav a.active:after {
     top: 43px;
     width: 14px;
     z-index: 0;
-}
+} */
 
 
-.mobileBtn {
+/* .mobileBtn {
 	background:#ffffff;
 	padding:5px;
 	text-align:center;
@@ -149,12 +147,12 @@ nav#mainNav a.active:after {
 .topSocials ul li:first-child{
 	border-bottom:1px solid #efefef;
 	padding-bottom:8px;
-}
+} */
 
 /*End header*/
 
 /* Style the video: 100% width and height to cover the entire window */
-#myVideo {
+/* #myVideo {
 	position: fixed;
 	right: 0;
 	bottom: 0;
@@ -163,7 +161,7 @@ nav#mainNav a.active:after {
   }
   
   /* Add some content at the bottom of the video/page */
-  .content {
+  /* .content {
 	position: fixed;
 	bottom: 0;
 	background: rgba(0, 0, 0, 0.5);
@@ -171,9 +169,9 @@ nav#mainNav a.active:after {
 	width: 100%;
 	padding: 20px;
   }
-  
+   */
   /* Style the button used to pause/play the video */
-  #myBtn {
+  /* #myBtn {
 	width: 200px;
 	font-size: 18px;
 	padding: 10px;
@@ -186,12 +184,12 @@ nav#mainNav a.active:after {
   #myBtn:hover {
 	background: #ddd;
 	color: black;
-  }
+  } */
 
 
 
 
-.caption {
+/* .caption {
     top: 49.4%;
     left: 0;
     position: absolute;
@@ -218,14 +216,14 @@ nav#mainNav a.active:after {
     top: 33px;
     width: 19px;
     z-index: 0;
-}
+} */
 
 /*End main slider*/
 
 
 /*About us*/
 
-.intro{
+/* .intro{
 	color:#111111;
 }
 
@@ -273,11 +271,11 @@ nav#mainNav a.active:after {
 
 .skill{
 	text-align:left;
-}
+} */
 
 
 
-.skill h1{
+/* .skill h1{
 	text-transform:uppercase;
 	font-size:28px;
 	margin-bottom:12px;
@@ -314,8 +312,8 @@ nav#mainNav a.active:after {
     left: 0;
     position: absolute;
     top: 0;
-}
-.skillbarTitle {
+} */
+/* .skillbarTitle {
     color: #111111;
     left: 0px;
     position: absolute;
@@ -351,7 +349,7 @@ nav#mainNav a.active:after {
 }
 .percent95 {
     width: 95%;
-}
+} */ */
 
 
 /*End about us*/
@@ -359,7 +357,7 @@ nav#mainNav a.active:after {
 
 /*Facts*/
 
-.factsContainer .overlay {
+/* .factsContainer .overlay {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.2);
 	min-height: 300px;
 }
@@ -408,7 +406,7 @@ nav#mainNav a.active:after {
 /*Services*/
 
 
-.service h3 {
+/* .service h3 {
     margin-bottom: 20px;
 	
 }
@@ -416,7 +414,7 @@ nav#mainNav a.active:after {
 .service i{
 	font-size:25px;
 	margin-right:5px;
-}
+} */
 
 /*End services*/
 
@@ -426,7 +424,7 @@ nav#mainNav a.active:after {
 
 
 
-.testiCliContainer .overlay {
+/* .testiCliContainer .overlay {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.2);
 	min-height: 500px;
 }
@@ -445,10 +443,10 @@ nav#mainNav a.active:after {
 #testiCli .testiSlider{
 	width:800px;
 	margin-top:100px;
-}
+} */
 
 
-
+/* 
 .testiSlider li {
 	padding-bottom:30px;
 	color:#ffffff;
@@ -466,11 +464,11 @@ nav#mainNav a.active:after {
 	padding-top:10px;
 	padding-bottom:20px;
 	color:#ffffff;
-}
+} */ */
 
 
 
-.clientHolder{
+/* .clientHolder{
 	background:rgba(239,239,239,0.95);
 	margin-top:50px;
 	padding-top:50px;
@@ -498,17 +496,17 @@ nav#mainNav a.active:after {
 .clientSlider li a{
 	color:#ffffff;
 	
-}
+} */
 
 
-.clientSlider li a:hover{
+/* .clientSlider li a:hover{
 	opacity:.5;
 	
 }
 
 .clientSlider li i{
 	font-size:60px;
-}
+} */
 
 
 /*End testimonials and clients*/
@@ -518,7 +516,7 @@ nav#mainNav a.active:after {
 /*Portfolio*/
 
 
-#portfolio.offset{
+/* #portfolio.offset{
 	padding-bottom:0;
 }
 
@@ -543,7 +541,7 @@ nav#mainNav a.active:after {
 
 .projDesc span {
 	display:block;
-}
+} */
 
 
 /*End portfolio*/
@@ -551,7 +549,7 @@ nav#mainNav a.active:after {
 
 
 /*Contact*/
-.info ,.contactForm{
+/* .info ,.contactForm{
 	text-align:left;
 }
 
@@ -623,10 +621,10 @@ form.respondF {
     padding-top: 10px;
     width: 630px;
 	font-size:12px;
-}
+} */
 
 
-.cForm #submit {
+/* .cForm #submit {
     color: #111111;
     cursor: pointer;
     display: inline-block;
@@ -653,7 +651,7 @@ form.respondF {
 
 .errorForm {
     border: 1px solid #da4856 !important;
-}
+} */
 
 /*End contact*/
 
@@ -661,7 +659,7 @@ form.respondF {
 
 /*Footer*/
 
-.footer{
+/* .footer{
 	border-top:3px solid #efefef;
 	
 }
@@ -729,7 +727,7 @@ form.respondF {
 
 .bottomFooter .right i{
 	color:#da4856;
-}
+} */
 
 /*End footer*/
 
@@ -743,22 +741,22 @@ form.respondF {
 
 
 /*Landscape 1024 X 600 */
-@media only screen and (min-width: 1000px) and (max-width: 1030px){
+/* @media only screen and (min-width: 1000px) and (max-width: 1030px){
 	nav#mainNav {margin-right: 70px;}
-}
+} */
 
 
 /*iPad lanscape*/
-@media screen and (max-device-width: 960px){
+/* @media screen and (max-device-width: 960px){
 	.factsContainer, .testiCliContainer  {background-attachment: scroll;background-position:top center !important;background-size:cover;}
 	input, textarea{-webkit-appearance: none;-webkit-border-radius:0;}
 	nav#mainNav {margin-right: 70px;}
 
 }
-
+ */
 
 /* Tablet Portrait size -> standard 960 */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+/* @media only screen and (min-width: 768px) and (max-width: 959px) {
 	
 	.factsContainer, .testiCliContainer  {background-attachment: scroll;background-position:top center !important;background-size:cover;}
 	input, textarea{-webkit-appearance: none;-webkit-border-radius:0;}
@@ -768,11 +766,11 @@ form.respondF {
 	#testiCli .clientSlider{width:480px;margin:40px 0 0 15px;}
 	
 	.cForm textarea, .cForm form{width:490px;}
-}
+} */
 
 
 /* Mobile Landscape Size -> Tablet Portrait size*/
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+/* @media only screen and (min-width: 480px) and (max-width: 767px) {
 	
 	input, textarea{-webkit-appearance: none;-webkit-border-radius:0;}
 	html{-webkit-text-size-adjust: none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;}
@@ -830,10 +828,10 @@ form.respondF {
 	.bottomFooter .right{float:none;}
 	
 	
-}
+} */
 
 /* Mobile Portrait Size -> Mobile Landscape Size */
-@media only screen and (max-width:479px) {
+/* @media only screen and (max-width:479px) {
 	
 	input, textarea{-webkit-appearance: none;-webkit-border-radius:0;}
 	html{-webkit-text-size-adjust: none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;}
@@ -896,7 +894,7 @@ form.respondF {
 	
 }
 	
-	
+	 */
 	
 	
 	
