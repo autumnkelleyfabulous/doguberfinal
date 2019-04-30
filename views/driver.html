@@ -55,20 +55,107 @@
             <!--End top socials-->
           </div>
         </header>
-  <div data-username="<%= username %>">
-  <h1>Hello Driver <%= username %></h1>
-  <h2> Driver Details: </h2>
+        <section id="projectDesc" class="offset section bBottom">
+
+  <div class="container clearfix">
+           
+  <div class="sixteen columns bottom3">
+           
+  <!-- <div data-username="<%= username %>"> -->
+  <h1 class="titleBig">Hello Driver <%= username %></h1>
+  <h2 align="center"> Driver Details: </h2>
   <div id="driverDetails"></div>
 
   <h4 id="notification"> Waiting For Requests...</h4>
 
   <button onclick="acceptRide()">
-    Accept Ride
-  </button>
+    Accept Ride</button>
+  </div>
+</div>
 
-  <div id="map" style="width: 600px; height: 400px;"" > </div>
+  <div id="map" style="width: 900px; height: 600px;" position="center"></div>
+  </section>
     <!--  load a map here later-->
+    <footer class="footer offset">
 
+        <!-- Top footer -->
+        <div class="topFooter">
+          <!--Container-->
+          <div class="container clearfix">
+  
+            <div class="four columns">
+              <h2>Adresse</h2>
+              <p>Dog Uber Inc.<br>
+                124 Conch Street, Bikini Bottom<br>
+                IN 143 ILY.</p>
+            </div> 
+  
+            <div class="four columns">
+              <h2>Social</h2>
+              <ul>
+                <li><a href="#">FaceBook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="">Google Plus</a></li>
+                <li><a href="#">Pinterest</a></li>
+                <li><a href="#">LinkedIn</a></li>
+              </ul>
+            </div> 
+  
+             <div class="four columns">
+              <h2>Call Us</h2>
+              <ul>
+                <li>+ 123-456-789-890</li>
+                <!-- <li>+ 123-456-789-456</li> -->
+  
+              </ul>
+            </div>
+  
+            <div class="four columns">
+              <h2>Our Email</h2>
+  
+              <ul>
+                <li><a href="#">press@doguber.com</a></li>
+                <li><a href="#">support@doguber.com</a></li>
+  
+              </ul>
+  
+            </div>
+  
+          </div> 
+          <!--End container-->
+         </div> 
+        <!--End top footer-->
+  
+        <!--Bottom footer-->
+         <div class="bottomFooter"> 
+          <!--Container-->
+           <div class="container clearfix"> 
+  
+    <div class="eight columns">
+      <p>© 2019_Final Project_Autumn Kelley Barr</p> </div>
+        
+            <div class="eight columns"> 
+              <a href="#">Home</a>
+              <a href="https://github.com/autumnkelleyfabulous">GitHub</a>
+              <a href="https://autumnkelleyfabulous.github.io/portfolio3update/">Portfolio</a>
+              <a href="https://www.linkedin.com/in/autumn-barr-0a0babb9/">Linkedin</a>
+            </div>
+  
+            <div class="eight columns red">
+              <div class="right">
+                <p>Made With <i class="icon-heart"></i> In Colorado.</p>
+              </div>
+  
+            </div>
+  
+          </div>
+          <!--End container-->
+         </div>
+    </div>
+    </footer>
+      </div> 
+  </body>
+  </html>
 
   <!--Load JavaScripts -->
   <!-- Load socket.io client library -->
@@ -170,6 +257,6 @@ L.marker([requestDetails.location.latitude, requestDetails.location.longitude], 
       });
     }
   </script> 
-</body>
+
 
 </html>
