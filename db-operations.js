@@ -47,7 +47,7 @@ function fetchDriverDetails(db, username, callback) {
 }
 // // //Saves details like client’s location, time
 function saveRequest(db, requestId, requestTime, location, username, status, callback){
-    db.collection('requestsdata').insert({
+    db.collection('requestsData').insert({
         "_id": requestId,
         "requestTime": requestTime,
         "location": location,
@@ -62,7 +62,7 @@ function saveRequest(db, requestId, requestTime, location, username, status, cal
     });
 }
 function updateRequest(db, requestId, driverName, status, callback) {
-    db.collection('requestsdata').update({
+    db.collection('requestsData').update({
         "_id": requestId 
     }, {
         $set: {

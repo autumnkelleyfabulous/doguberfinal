@@ -73,12 +73,9 @@
         Request A Ride </button>
         </div>
     </div>
+
     <div id="map" style='width: 900px; height: 600px;' position="center"></div>
-
     </section>
-
-
-    <!-- <div id="map" style='width: 600px; height: 400px;'> </div> -->
 
 	<footer class="footer offset">
 
@@ -109,7 +106,7 @@
 						<h2>Call Us</h2>
 						<ul>
 							<li>+ 123-456-789-890</li>
-							<!-- <li>+ 123-456-789-456</li> -->
+					
 
 						</ul>
 					</div>
@@ -189,7 +186,7 @@
 
         //Client's info
         requestDetails = {
-            clientusername: username,
+            clientName: username,
             location: {
                 address: "1366 Kennedy Ave, Louisville, Colorado 80027, USA",
                 latitude: 39.983,
@@ -204,7 +201,7 @@
 
         //         //Listen for a "ride-accepted" event
         socket.on("ride-accepted", function (eventData) {
-            driverDetails = data; //Save driver details
+            driverDetails = eventData; //Save driver details
 
             //Display driver details
             document.getElementById("notification").innerHTML =
@@ -241,7 +238,7 @@
             L.marker([driverDetails.location.latitude,driverDetails.location.longitude], {
 
 icon: L.icon({
-    iconUrl: "./public/img/dogpin.jpg", //image path
+    iconUrl: "assets/public/img/dogpin.jpg", //image path
     iconSize: [60, 28] //in pixels
 })
 }).addTo(map);

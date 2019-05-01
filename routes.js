@@ -55,6 +55,7 @@ function initialize(app, db, socket, io) {
             address: eventData.location.address
         };
         dbOperations.saveRequest(db, requestId, requestTime, location, eventData.clientName, 'waiting', function (results) {
+            eventData.clientName;
 
             // //         //2. AFTER saving, fetch nearby drivers from client’s location
             dbOperations.fetchNearestdriverdata(db, location.coordinates, function (results) {
@@ -77,7 +78,7 @@ socket.on('ride-accepted', function (eventData) { //Listen to a 'ride-accepted' 
             // // //Then update the request in the database with the driver details for given requestId
             dbOperations.updateRequest(db, requestId, eventData.driverDetails.driverName, 'engaged', function (results) {
                 // //     //After updating the request, emit a 'request-accepted' event to the client and send driver details
-                io.sockets.in(eventData.requestDetails.clientId).emit('ride-accepted', eventData.driverDetails);
+                io.sockets.in(eventData.requestDetails.clientName).emit('ride-accepted', eventData.driverDetails);
             })
             });
         
