@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body data-username=" <%= username %>">
 <!--Wrapper-->
 <div id="wrapper">
 		<!--Header-->
@@ -63,7 +63,6 @@
 
  <div class="sixteen columns bottom3">
 
-<!-- <div data-username=" <%= username %>"> -->
     <h1 class="titleBig">Hello Client <%= username %></h1>
    <h2 align="center"> Driver Details: </h2>
     <div id="driverDetails"></div>
@@ -74,7 +73,7 @@
         Request A Ride </button>
         </div>
     </div>
-    <div id="map" style='width: 900px; height: 600px;' postion="center"></div>
+    <div id="map" style='width: 900px; height: 600px;' position="center"></div>
 
     </section>
 
@@ -159,8 +158,8 @@
 	</div>
 	</footer>
     </div> 
-</body>
-</html>
+
+
   
 
     <!--Load JavaScripts -->
@@ -250,6 +249,6 @@ icon: L.icon({
         }));
     
     </script>
-<!-- </body> -->
+</body>
 
 </html>

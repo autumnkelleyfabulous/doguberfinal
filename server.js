@@ -72,23 +72,3 @@ server.listen(portNumber, function() { //Runs the server on port 8000
           });
         });
     });
-
-// var socket = io();
-
-
-
-
-
-// var app = require('express').createServer()
-//   , io = require('socket.io').listen(app);
-
-
-
-
-
-
-
-// var server = http.Server(app);
-
-//
-

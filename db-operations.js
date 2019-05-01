@@ -38,7 +38,7 @@ function fetchDriverDetails(db, username, callback) {
             callback({
                 // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
                 // userId: results.userId,
-                username: results.username,
+                driverName: results.username,
                 phone: results.phone,
                 location: results.location
             });
@@ -46,12 +46,12 @@ function fetchDriverDetails(db, username, callback) {
     });
 }
 // // //Saves details like client’s location, time
-function saveRequest(db, requestId, requestTime, location, clientId, status, callback){
+function saveRequest(db, requestId, requestTime, location, username, status, callback){
     db.collection('requestsdata').insert({
         "_id": requestId,
         "requestTime": requestTime,
         "location": location,
-        "clientusername": clientId,
+        "clientName": username,
         "status": status
     }, function(err, results){
            if(err) {
@@ -61,13 +61,13 @@ function saveRequest(db, requestId, requestTime, location, clientId, status, cal
            }
     });
 }
-function updateRequest(db, issueId, driverId, status, callback) {
+function updateRequest(db, requestId, driverName, status, callback) {
     db.collection('requestsdata').update({
-        "_id": issueId 
+        "_id": requestId 
     }, {
         $set: {
             "status": status, //Update status to 'engaged'
-            "driverId": driverId //save driver's userId
+            "driverId": driverName //save driver's userId
         }
     }, function(err, results) {
         if (err) {
