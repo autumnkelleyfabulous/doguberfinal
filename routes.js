@@ -1,6 +1,38 @@
 var dbOperations = require('./db-operations');
 
 function initialize(app, db, socket, io) {
+    
+        // http://localhost:8000/clientdata?lat=39.9631&&lng=105.162
+        app.get('/clientdata', function (req, res) {
+    
+            //Convert the query strings into Numbers
+            var latitude = Number(req.query.lat);
+            console.log("Lat: " + latitude)
+            var longitude = Number(req.query.lng);
+    
+            dbOperations.fetchNearestclientdata(db, [longitude, latitude], function (results) {
+                console.log(results);
+                // //return the results back to the client in the form of JSON
+                res.json({
+                    clientdata: results
+                });
+    
+            });
+        });
+                 
+        // // // GET request to 'http://localhost:8000/clientdata/info?username=Meggzzie55'
+    
+        app.get('/clientdata/info?', function (req, res) {
+            // var userId = req.query.userId 
+            var username = req.query.username //extract userId from query params
+            dbOperations.fetchClientDetails(db, username, function (results) {
+                res.json({
+                    clientDetails: results //return results to client
+                });
+            });
+        });
+
+
     // http://localhost:8000/driverdata?lat=39.9631&&lng=105.162
     app.get('/driverdata', function (req, res) {
 

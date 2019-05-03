@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Artifika|Concert+One|Dosis|Quicksand" rel="stylesheet">
     <title>Client <%= username %> </title>
     <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
 
@@ -35,7 +35,7 @@
 							<ul>
 								<li><a href="client">Rider</a></li>
 								<li><a href="driver">Driver</a></li>
-								<li><a href="home.html#contact">Sign Up</a></li>
+								<li><a href="signup">Sign Up</a></li>
 							</ul>
 						</nav>
 						<!--End navigation-->
@@ -54,16 +54,32 @@
 						<li><a href="#"><i class="icon-pinterest"></i></a></li>
 					</ul>
 				</div> -->
-				<!--End top socials-->
-			</div>
+                <!--End top socials-->
+               
+            </div>
         </header>
+    <div class="clear"></div>
+
+           </header>
+ <section class="sub-head1" position="center">
+                <div class="wrapper">
+                    <ul class="plain">
+                
+                         <li><h1 class="titleBig1">Hello <%= username %></h1></li>
+                    
+                
+                    </ul>
+                 
+        </div>
+        </section>
+        <div class="clear"></div>
         <section id="projectDesc" class="offset section bBottom">
 
  <div class="container clearfix">
 
  <div class="sixteen columns bottom3">
 
-    <h1 class="titleBig">Hello Client <%= username %></h1>
+    
    <h2 align="center"> Driver Details: </h2>
     <div id="driverDetails"></div>
 
@@ -73,7 +89,7 @@
         Request A Ride </button>
         </div>
     </div>
-
+</div>
     <div id="map" style='width: 900px; height: 600px;' position="center"></div>
     </section>
 

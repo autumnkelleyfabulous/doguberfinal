@@ -1,4 +1,51 @@
 
+function fetchNearestclientdata(db, coordinates, callback) {
+
+    db.collection('clientdata').createIndex({
+        "location": "2dsphere"
+    }, function() {
+        console.log(coordinates)
+        db.collection("clientdata").find({
+            location: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: coordinates
+                    },
+                    $maxDistance: 40000
+                }
+            }
+        }).toArray(function(err, results) {
+            if(err) {
+                console.log(err)
+            }else {
+                console.log(results)
+                callback(results);
+            }
+        });
+    });
+}    
+function fetchClientDetails(db, username,callback) {
+    db.collection("clientdata").findOne({
+        // userId: userId,
+        username: username,
+        // dogName: dogName,
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback({
+                // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
+                // userId: results.userId,
+                clientName: results.username,
+                phone: results.phone,
+                dogName: results.dogName,
+                location: results.location
+            });
+        }
+    });
+}
+
 
 function fetchNearestdriverdata(db, coordinates, callback) {
 
@@ -97,6 +144,9 @@ function fetchRequests(db, callback) {
     });
 }
 
+
+exports.fetchNearestclientdata = fetchNearestclientdata;
+exports.fetchClientDetails = fetchClientDetails;
 exports.fetchNearestdriverdata = fetchNearestdriverdata;
 exports.fetchDriverDetails = fetchDriverDetails;
 exports.saveRequest = saveRequest;
