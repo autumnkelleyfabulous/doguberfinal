@@ -10,7 +10,7 @@
 	<link href="assets/css/skeleton.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Artifika" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates" rel="stylesheet">
 
 </head>
 
@@ -80,8 +80,8 @@
 
         <div class="sixteen columns bottom3"> 
 
-          <div id="respond" class="comment-respond">
-            <h3 id="reply-title" class="comment-reply-title" img src="./public/images/signin.png"> 
+          <div id="respond" class="comment-respond" style="background-image: url(/assets/images/signin.png)">
+            <h3 id="reply-title" class="comment-reply-title"> 
                     <p class="comment-notes"><span id="email-notes">Sign Up/Login <span class="required">*</span></p>
                     <p><textarea id="Username" placeholder="Username" name="Username" cols="20" rows="2"
                         aria-required="true"></textarea></p>
@@ -93,7 +93,8 @@
                     <p class="comment-form-password"><input id="password" name="password" placeholder="password"
                         type="text" value="" size="30"></p>
                     <p class=comment-form-photo"><input id="photo" name="photo" placeholder="Photo Image(Required)"
-                        type="image" class="validate" </p> <p class="form-submit"><input name="submit" type="submit"
+                        type="image" class="validate" </p>
+                    <p class="form-submit"><input name="submit" type="submit"
                         id="submit" class="submit" value="Submit"> <input type="hidden" name="Submit" value="7483"
                         id="Submit">
                       <input type="hidden" name="comment" id="comment" value="0">
@@ -181,5 +182,9 @@
         </div>
         </footer>
       </div>
+
+      <script>
+      $("#username").val.trim
+      </script>
     </body>
     </html>

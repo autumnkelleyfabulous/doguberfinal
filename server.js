@@ -6,6 +6,7 @@ var app = express();
 var consolidate = require("consolidate"); //1
 var _ = require("underscore");
 var bodyParser = require('body-parser');
+var path = require('path');
 
 
 var routes = require('./routes'); //File that contains our endpoints
@@ -62,6 +63,11 @@ server.listen(portNumber, function() { //Runs the server on port 8000
       });
         app.get('/signup', function(req, res) {
           res.render('signup.html');
+        //   dbConn.then(function(db) {
+        //     delete req.body._id; // for safety reasons
+        //     db.collection('feedbacks').insertOne(req.body);
+        // });    
+        // res.send('Data received:\n' + JSON.stringify(req.body));
     });
       io.on('connection', function (socket) { //Listen on the 'connection' event for incoming sockets
             console.log('A user just connected');

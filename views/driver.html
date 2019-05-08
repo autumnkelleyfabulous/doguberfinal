@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Artifika|Concert+One|Dosis|Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates" rel="stylesheet">
   <title> Driver <%= username %> </title>
   <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
 
@@ -266,7 +266,7 @@ console.log("Driver Connected");
 
         L.marker([requestDetails.location.latitude, requestDetails.location.longitude], {
     icon: L.icon({
-       iconUrl: "./public/img/dogpin.jpg",
+       iconUrl: "/assets/images/dogpin.jpg",
        iconSize: [50,50]
     })
 }).addTo(map);

@@ -109,7 +109,7 @@ html {
 
 #comments{
   margin-top: 80px;  
-     font-family: "proxima-nova" !important;
+     font-family: "Montserrat Alternates" !important;
      color: #444 !important;
  
  }
@@ -123,7 +123,7 @@ html {
    display: inline-block;
      position:absolute;
    font-style: italic !important;
-     font-family: 'archer';
+     font-family: 'Montserrat Alternates';
      
  }
  
@@ -174,7 +174,7 @@ html {
      border: solid 2px #ff63e0;
      margin-bottom: 10px;
       padding: 5px;
-     font-family: 'plutomedium';
+     font-family: 'Montserrat Alternates';
      text-transform: uppercase;
  }
  
@@ -183,7 +183,7 @@ html {
      width: 398px;
      height: 93px;
      padding: 5px;
-     font-family: 'plutomedium';
+     font-family: 'Montserrat Alternates';
      border: solid 2px #ff63e0;
      margin-bottom: 10px;
      text-transform: uppercase;
@@ -204,7 +204,7 @@ html {
    background: #7df3ff;
      color:#444;
      border: none !important;
-   font-family: 'plutomedium';
+   font-family: 'Montserrat Alternates';
      text-transform: uppercase;
    text-transform: uppercase;
    font-size: .8em;
@@ -249,8 +249,6 @@ html {
      color: #fff;
      border: solid 1px #444;
  }
- 
- 
  
 
 /*Wrapper*/
@@ -314,11 +312,13 @@ nav#mainNav{
 }
 
 nav#mainNav li {
+  font-family:"Montserrat Alternates";
 	display: inline-block;
 	position:relative;
 }
 
 nav#mainNav li a{
+  font-family: "Montserrat Alternates";
     color: #111111;
     display: block;
     padding: 25px 15px;
@@ -403,7 +403,7 @@ nav#mainNav a.active:after {
 }
 
 .sub-head h1 {
-  font-family: 'plutomedium';
+  font-family: 'Montserrat Alternates';
   -webkit-text-fill-color: #7df3ff;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #444;
@@ -454,7 +454,7 @@ font-size: 40px;
 
 }
 .sub-head2 h1 {
-font-family: 'plutomedium';
+font-family: 'Montserrat Alternates';
 -webkit-text-fill-color: #ffe000;
 -webkit-text-stroke-width: 1px;
 -webkit-text-stroke-color: #444;
@@ -506,7 +506,7 @@ border-bottom: solid 2px #ffe000;
 
 }
 .sub-head3 h1 {
-font-family: 'plutomedium';
+font-family: 'Montserrat Alternates';
 -webkit-text-fill-color: #87edc2;
 -webkit-text-stroke-width: 1px;
 -webkit-text-stroke-color: #444;
@@ -687,11 +687,11 @@ border-bottom: solid 2px #87edc2;
 	.factsContainer, .testiCliContainer  {background-attachment: scroll;background-position:top center !important;background-size:cover;}
 	input, textarea{-webkit-appearance: none;-webkit-border-radius:0;}
 	nav#mainNav {margin-right: 100px;}
-	.skill h1{line-height:35px;}
+	/* .skill h1{line-height:35px;}
 	#testiCli .testiSlider{width:700px;}
 	#testiCli .clientSlider{width:480px;margin:40px 0 0 15px;}
 	
-	.cForm textarea, .cForm form{width:490px;}
+	.cForm textarea, .cForm form{width:490px;} */
 }
 
 
@@ -833,6 +833,7 @@ body {
 	-webkit-text-size-adjust: 100%;
 }
 .titleBig{
+  font-family: "Montserrat Alternates";
 	text-transform:uppercase;
 	position:relative;
 	display:inline-block;
@@ -853,7 +854,7 @@ body {
 }
 
 .titleBig1{
-  font-family: 'plutomedium';
+  font-family: 'Montserrat Alternates';
   color: #7df3ff;
   text-shadow: -2px 0 black, 0 2px black;
   font-size: 40px;
@@ -865,7 +866,7 @@ body {
 }
 
 .titleBig2 {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
   color: #ffe000;
   text-shadow: -2px 0 black, 0 2px black;
   font-size:40px;
@@ -876,7 +877,7 @@ body {
   /* margin-bottom:40px;  */
 }
 .titleBig3 {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
   color: #87edc2;
   text-shadow: -2px 0 black, 0 2px black;
   font-size:40px;
@@ -920,11 +921,11 @@ small { font-size: 80%; }
 /* #Font Rules
 ================================================== */
 
-.logo h1, .caption h1 span.new, .intro span.black, .bottomFooter .bLogo , .black{font-family: 'open_sansextrabold', Arial, sans-serif;} 
-nav#mainNav li, .skillbarTitle,.fc, .regButton, h1, h2, h3, h4, h5, h6{font-family: 'open_sansbold', Arial, sans-serif;}
-.caption h1, {font-family: "open_sanssemibold", Arial, sans-serif;}
+.logo h1, .caption h1 span.new, .intro span.black, .bottomFooter .bLogo , .black{font-family: 'Montserrat Alternates', Arial, sans-serif;} 
+nav#mainNav li, .skillbarTitle,.fc, .regButton, h1, h2, h3, h4, h5, h6{font-family: 'Montserrat Alternates', Arial, sans-serif;}
+.caption h1, {font-family: "Montserrat Alternates'", Arial, sans-serif;}
 nav#mainNav li, .skillbarTitle, 
-.caption h1 {font-family: "open_sanssemibold" , Arial, sans-serif;}
+.caption h1 {font-family: "Montserrat Alternates'" , Arial, sans-serif;}
 
 /* #Misc
 ================================================== */
