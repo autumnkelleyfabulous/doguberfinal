@@ -6,11 +6,15 @@
   <title>Dog Uber-homepage</title>
 
   <!--Stylesheet-->
-  <!-- <link href="assets/css/base.css" rel="stylesheet">
-	<link href="assets/css/skeleton.css" rel="stylesheet">
-	<link href="assets/css/main.css" rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates" rel="stylesheet"> -->
 
 </head>
 
@@ -63,128 +67,159 @@
       </div>
     </header>
     <section class="sub-head3" position="center">
-        <div class="wrapper">
-            <ul class="plain">
-        
-                 <li><h1 class="titleBig3">SIGN UP</h1></li>
-            
-            </ul>
-            
-</div>
-</section>
+      <div class="wrapper">
+        <ul class="plain">
+
+          <li>
+            <h1 class="titleBig3">SIGN UP</h1>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
 
 
     <section id="projectDesc" class="offset section bBottom">
 
       <div class="container clearfix">
 
-        <div class="sixteen columns bottom3"> 
+        <div class="sixteen columns bottom3">
 
           <div id="respond" class="comment-respond" style="background-image: url(/assets/images/signin.png)">
-            <h3 id="reply-title" class="comment-reply-title"> 
-                    <p class="comment-notes"><span id="email-notes">Sign Up/Login <span class="required">*</span></p>
-                    <p><textarea id="Username" placeholder="Username" name="Username" cols="20" rows="2"
-                        aria-required="true"></textarea></p>
-                    <div class="clear"></div>
-                    <p class="comment-form-dogName"><input id="dogName" name="dogName" placeholder="Pet's Name"
-                        type="text" value="" size="30"></p>
-                    <p class="comment-form-email"><input id="email" name="email" placeholder="Email" type="text"
-                        value="" size="30"></p>
-                    <p class="comment-form-password"><input id="password" name="password" placeholder="password"
-                        type="text" value="" size="30"></p>
-                    <p class=comment-form-photo"><input id="photo" name="photo" placeholder="Photo Image(Required)"
-                        type="image" class="validate" </p>
-                    <p class="form-submit"><input name="submit" type="submit"
-                        id="submit" class="submit" value="Submit"> <input type="hidden" name="Submit" value="7483"
-                        id="Submit">
-                      <input type="hidden" name="comment" id="comment" value="0">
-                    </p>
-                  </form>
+            <h3 id="reply-title" class="comment-reply-title">
+              <p class="comment-notes"><span id="email-notes">Sign-Up<span class="required">*</span></p>
+              <form>
+                <!--<p><textarea id="Username" placeholder="Username" name="username" cols="20" rows="2" aria-required="true"></textarea></p>
+              <div class="clear"></div>-->
+                <p class="comment-form-username"><input id="username" name="username" placeholder="Username" type="text"
+                    value="" size="30"></p>
+                <p class="comment-form-phone"><input id="phone" name="phone" placeholder="Phone" type="text" value=""
+                    size="30"></p>
+                <p class="comment-form-email"><input id="email" name="email" placeholder="Email" type="text" value=""
+                    size="30"></p>
+                <p class="comment-form-petName"><input id="petName" name="petName" placeholder="Pet's Name" type="text"
+                    value="" size="30"></p>
+                <p class="comment-form-password"><input id="password" name="password" placeholder="password" type="text"
+                    value="" size="30"></p>
+                <button type="button" id="submit" class="submit" value="Submit" data-toggle="modal" data-target="#exampleModal">Submit</button>
+              </form>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Yay You've Signed Up For Dog Uber!</h5>
+                    <!-- <p>Let's Ride <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p> -->
+                    <hr>
+                    <h5>Where We Going Next?</h5>
+                    <p><a href="client" class="tooltip-test" title="Tooltip">Let's Ride</a> and <a href="driver" class="tooltip-test" title="Tooltip">Let's Drive</a> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </section>
-          <footer class="footer offset">
+    </section>
+    <footer class="footer offset">
 
-            <!-- Top footer -->
-            <div class="topFooter">
-              <!--Container-->
-              <div class="container clearfix">
+      <!-- Top footer -->
+      <div class="topFooter">
+        <!--Container-->
+        <div class="container clearfix">
 
-                <div class="four columns">
-                  <h2>Adresse</h2>
-                  <p>Dog Uber Inc.<br>
-                    124 Conch Street, Bikini Bottom<br>
-                    IN 143 ILY.</p>
-                </div>
+          <div class="four columns">
+            <h2>Adresse</h2>
+            <p>Dog Uber Inc.<br>
+              124 Conch Street, Bikini Bottom<br>
+              IN 143 ILY.</p>
+          </div>
 
-                <div class="four columns">
-                  <h2>Social</h2>
-                  <ul>
-                    <li><a href="#">FaceBook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="">Google Plus</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                  </ul>
-                </div>
+          <div class="four columns">
+            <h2>Social</h2>
+            <ul>
+              <li><a href="#">FaceBook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="">Google Plus</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">LinkedIn</a></li>
+            </ul>
+          </div>
 
-                <div class="four columns">
-                  <h2>Call Us</h2>
-                  <ul>
-                    <li>+ 123-456-789-890</li>
+          <div class="four columns">
+            <h2>Call Us</h2>
+            <ul>
+              <li>+ 123-456-789-890</li>
 
-                  </ul>
-                </div>
+            </ul>
+          </div>
 
-                <div class="four columns">
-                  <h2>Our Email</h2>
+          <div class="four columns">
+            <h2>Our Email</h2>
 
-                  <ul>
-                    <li><a href="#">press@doguber.com</a></li>
-                    <li><a href="#">support@doguber.com</a></li>
+            <ul>
+              <li><a href="#">press@doguber.com</a></li>
+              <li><a href="#">support@doguber.com</a></li>
 
-                  </ul>
+            </ul>
 
-                </div>
+          </div>
 
-              </div>
-              <!--End container-->
-            </div>
-            <!--End top footer-->
-
-            <!--Bottom footer-->
-            <div class="bottomFooter">
-              <!--Container-->
-              <div class="container clearfix">
-
-                <div class="eight columns">
-                  <p>© 2019_Final Project_Autumn Kelley Barr</p>
-                </div>
-
-                <div class="eight columns">
-                  <a href="#">Home</a>
-                  <a href="https://github.com/autumnkelleyfabulous">GitHub</a>
-                  <a href="https://autumnkelleyfabulous.github.io/portfolio3update/">Portfolio</a>
-                  <a href="https://www.linkedin.com/in/autumn-barr-0a0babb9/">Linkedin</a>
-                </div>
-
-                <div class="eight columns red">
-                  <div class="right">
-                    <p>Made With <i class="icon-heart"></i> In Colorado.</p>
-                  </div>
-
-                </div>
-
-              </div>
-              <!--End container-->
-            </div>
         </div>
-        </footer>
+        <!--End container-->
       </div>
+      <!--End top footer-->
 
-      <script>
-      $("#username").val.trim
-      </script>
-    </body>
-    </html>
+      <!--Bottom footer-->
+      <div class="bottomFooter">
+        <!--Container-->
+        <div class="container clearfix">
+
+          <div class="eight columns">
+            <p>© 2019_Final Project_Autumn Kelley Barr</p>
+          </div>
+
+          <div class="eight columns">
+            <a href="#">Home</a>
+            <a href="https://github.com/autumnkelleyfabulous">GitHub</a>
+            <a href="https://autumnkelleyfabulous.github.io/portfolio3update/">Portfolio</a>
+            <a href="https://www.linkedin.com/in/autumn-barr-0a0babb9/">Linkedin</a>
+          </div>
+
+          <div class="eight columns red">
+            <div class="right">
+              <p>Made With <i class="icon-heart"></i> In Colorado.</p>
+            </div>
+
+          </div>
+
+        </div>
+        <!--End container-->
+      </div>
+  </div>
+  </footer>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$('#submit').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+</body>
+
+</html>

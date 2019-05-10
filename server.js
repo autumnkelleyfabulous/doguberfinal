@@ -69,6 +69,10 @@ server.listen(portNumber, function() { //Runs the server on port 8000
         // });    
         // res.send('Data received:\n' + JSON.stringify(req.body));
     });
+    app.post('/sign-up-success', function (req, res) {
+      db.collection('clientdata').insertOne(req.body);
+    res.send('Sign-up Complete!\n' + JSON.stringify(req.body));
+  });
       io.on('connection', function (socket) { //Listen on the 'connection' event for incoming sockets
             console.log('A user just connected');
       

@@ -25,7 +25,7 @@ function fetchNearestclientdata(db, coordinates, callback) {
         });
     });
 }    
-function fetchClientDetails(db, username,callback) {
+function fetchClientDetails(db, username, callback) {
     db.collection("clientdata").findOne({
         // userId: userId,
         username: username,
