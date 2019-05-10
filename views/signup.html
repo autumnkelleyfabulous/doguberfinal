@@ -98,10 +98,13 @@
                     size="30"></p>
                 <p class="comment-form-email"><input id="email" name="email" placeholder="Email" type="text" value=""
                     size="30"></p>
-                <p class="comment-form-petName"><input id="petName" name="petName" placeholder="Pet's Name" type="text"
+                <p class="comment-form-dogName"><input id="dogName" name="dogName" placeholder="Pet's Name" type="text"
                     value="" size="30"></p>
-                <p class="comment-form-password"><input id="password" name="password" placeholder="password" type="text"
-                    value="" size="30"></p>
+               <p class="comment-form-password"><input id="password" name="password" placeholder="password" type="text"
+                      value="" size="30"></p>
+               <p class="comment-form-location"><input id="Location" name="Location" placeholder="Location(Address)" type="text"
+                      value="" size="30"></p>
+                
                 <button type="button" id="submit" class="submit" value="Submit" data-toggle="modal" data-target="#exampleModal">Submit</button>
               </form>
           </div>
@@ -200,9 +203,9 @@
           </div>
 
           <div class="eight columns red">
-            <div class="right">
-              <p>Made With <i class="icon-heart"></i> In Colorado.</p>
-            </div>
+            	<div class="right">
+									Made with <span style="color: #e25555;">&#9829;</span> in Colorado
+								</div>
 
           </div>
 
@@ -212,13 +215,49 @@
   </div>
   </footer>
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $('#submit').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
-})
+}) -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+   // Add Submit button click event
+$("#submit").on('click', addUser);
+function addUser(event) {
+  event.preventDefault();
+
+  // Super basic validation - increase errorCount variable if any fields are blank
+  // var errorCount = 0;
+  // $('#addUser input')
+  var newUser = {
+    'username': $('#username').val(),
+    'phone': $('#phone').val(),
+    'email': $('#email').val(),
+    'dogName': $('#dogName').val(),
+    'password': $('#password').val(),
+    'location': $('#location').val()
+  }
+
+  // Use AJAX to post the object to our adduser service
+  $.ajax({
+    type: 'POST',
+    data: newUser,
+    url: '/sign-up-success',
+    dataType: 'JSON'
+  }).done(function (response) {
+    $('#myInput').trigger('focus')
+  })
+}
+
+
+
 </script>
 </body>
 

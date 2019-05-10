@@ -71,8 +71,60 @@ server.listen(portNumber, function() { //Runs the server on port 8000
     });
     app.post('/sign-up-success', function (req, res) {
       db.collection('clientdata').insertOne(req.body);
-    res.send('Sign-up Complete!\n' + JSON.stringify(req.body));
+    // res.send('Sign-up Complete!\n' + JSON.stringify(req.body));
   });
+  // app.get('/profile', function (req, res) {
+  //   console.log("login")
+  //   res.render('client.html', {
+  //     // userId: req.query.userId,
+  //     username: req.query.username,
+  //     // phone: req.query.phone,
+  //   });
+  // });
+ 
+  // app.post("/profile", function(req, res) {
+  //   db.collection('clientdata', "driverdata").findOne(req.body);
+  //   username: req.query.username,
+  //   res.send('You have logged into Dog Uber!')
+    // password: req.query.password,
+
+    // var password = req.body.password;
+    // db.User.findOne({
+    //   where: { clientName: username }
+    // }).then(function(data) {
+      //Checks to see if there is a username in the DB
+      // if (data !== null) {
+      //   //Checks to see if the password matches
+      //   if (data.password === password) {
+          //if password matches it pulls the users quests
+          // var userLocation = data[0].User.dataValues.location;
+          //  username = username;
+      //     db.collection('clientdata", "driverdata').findAll({
+      //       include: [username],
+      //       where: { username: username }
+      //     }).then(function(data) {
+      //       var userLocation = data[0].dataValues.User.Location;
+      //       db.collection('clientdata','driverdata).findAll({ location: clientLocation, completed: true 
+      // .then(function(data) {
+      //         if (data.length === 6) {
+      //           db.collection('clientdata', 'driverdata').update(
+      //             {
+      //               loginComplete: true
+      //             },
+      //             {
+      //               where: {
+      //                 username: username
+      //               }
+      //             }
+      //           );
+      //           console.log("User completed the quests!" + data.length);
+      //         }
+      //       })
+      //       )
+      //    })
+      //   })
+      // });
+  
       io.on('connection', function (socket) { //Listen on the 'connection' event for incoming sockets
             console.log('A user just connected');
       
@@ -84,4 +136,5 @@ server.listen(portNumber, function() { //Runs the server on port 8000
             routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
           });
         });
-    });
+      })
+    // });
