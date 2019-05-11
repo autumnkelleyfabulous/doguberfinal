@@ -1,6 +1,38 @@
 var dbOperations = require('./db-operations');
 
 function initialize(app, db, socket, io) {
+    
+        // http://localhost:8000/clientdata?lat=39.9631&&lng=105.162
+        app.get('/clientdata', function (req, res) {
+    
+            //Convert the query strings into Numbers
+            var latitude = Number(req.query.lat);
+            console.log("Lat: " + latitude)
+            var longitude = Number(req.query.lng);
+    
+            dbOperations.fetchNearestclientdata(db, [longitude, latitude], function (results) {
+                console.log(results);
+                // //return the results back to the client in the form of JSON
+                res.json({
+                    clientdata: results
+                });
+    
+            });
+        });
+                 
+        // // // GET request to 'http://localhost:8000/clientdata/info?username=Meggzzie55'
+    
+        app.get('/clientdata/info?', function (req, res) {
+            // var userId = req.query.userId 
+            var username = req.query.username //extract userId from query params
+            dbOperations.fetchClientDetails(db, username, function (results) {
+                res.json({
+                    clientDetails: results //return results to client
+                });
+            });
+        });
+
+
     // http://localhost:8000/driverdata?lat=39.9631&&lng=105.162
     app.get('/driverdata', function (req, res) {
 
@@ -54,7 +86,8 @@ function initialize(app, db, socket, io) {
             ],
             address: eventData.location.address
         };
-        dbOperations.saveRequest(db, requestId, requestTime, location, eventData.clientId, 'waiting', function (results) {
+        dbOperations.saveRequest(db, requestId, requestTime, location, eventData.clientName, 'waiting', function (results) {
+            eventData.clientName;
 
             // //         //2. AFTER saving, fetch nearby drivers from client’s location
             dbOperations.fetchNearestdriverdata(db, location.coordinates, function (results) {
@@ -75,9 +108,9 @@ socket.on('ride-accepted', function (eventData) { //Listen to a 'ride-accepted' 
             var requestId = new ObjectID(eventData.requestDetails.requestId);
 
             // // //Then update the request in the database with the driver details for given requestId
-            dbOperations.updateRequest(db, requestId, eventData.driverDetails.driverId, 'engaged', function (results) {
+            dbOperations.updateRequest(db, requestId, eventData.driverDetails.driverName, 'engaged', function (results) {
                 // //     //After updating the request, emit a 'request-accepted' event to the client and send driver details
-                io.sockets.in(eventData.requestDetails.clientId).emit('ride-accepted', eventData.driverDetails);
+                io.sockets.in(eventData.requestDetails.clientName).emit('ride-accepted', eventData.driverDetails);
             })
             });
         
@@ -107,6 +140,4 @@ socket.on('ride-accepted', function (eventData) { //Listen to a 'ride-accepted' 
                 });
             });
         }
-
-
             exports.initialize = initialize;

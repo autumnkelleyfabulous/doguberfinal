@@ -6,10 +6,18 @@
 	<title>Dog Uber-homepage</title>
 
 	<!--Stylesheet-->
-	<!-- <link href="assets/css/base.css" rel="stylesheet">
-	<link href="assets/css/skeleton.css" rel="stylesheet">
-	<link href="assets/css/main.css" rel="stylesheet"> -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/project.css">
+	<link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+
+<!-- 	
+	<link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 </head>
 
 <body>
@@ -36,13 +44,52 @@
 						<nav id="mainNav">
 							<a href="#" class="mobileBtn"><i class="icon-menu"></i></a>
 							<ul>
-								<li><a href="client">Rider</a></li>
-								<li><a href="driver">Driver</a></li>
-								<li><a href="#">Sign Up</a></li>
+								<li><a href="/client?username=autumnkelleyfabulous">Rider</a></li>
+								<li><a href="/driver?username=TheJacquiCohen">Driver</a></li>
+								<li><a href="signup">Sign Up</a></li>
+							<button type="button" id="login" class="login" value="Login" data-toggle="modal" data-target="#exampleModal">Login</button>
+								<!-- <li><button type="button" <a href="login">Login</a></li> -->
 							</ul>
 						</nav>
 						<!--End navigation-->
 					</div>
+					
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true" style="background-image: url(/assets/images/signin.png)">
+					<div class="modal-dialog" role="document"> 
+					   <div class="modal-content"> 
+						 <div class="modal-header">
+						   <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+						 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button> 
+						</div>
+						<div class="modal-body">
+							<div class="modal-background"</div>
+						<div class="modal-card">
+						  <header class="modal-card-head">
+									<form action="/" method="POST">
+										<div class="field">
+							<p class="modal-card-title">Login</p>
+							<p class="comment-form-username"><input id="username" name="username" placeholder="Username" type="text"
+								value="" size="30"></p>
+							<p class="comment-form-password"><input id="password" name="password" placeholder="password" type="text"
+								value="" size="30"></p> 
+										<button class="button is-link" id="login" >Login</button>
+							</field>
+									</div>
+								  </div>
+								</form>
+							  </section>
+							  <footer class="modal-card-foot">
+						</div>
+					</div>
+					</div>
+					</div>
+							</div>
+						  </div>
+						  
+
 					<!--End container-->
 				</div>
 				<!--End main header-->
@@ -63,7 +110,7 @@
 		<!--End header-->
 		<!-- The video -->
 		<video autoplay muted loop id="myVideo">
-			<source src="assets/images/sample1.mp4" type="video/mp4">
+			<source src="assets/images/calidrivingvid.mp4" type="video/mp4">
 		</video>
 
 		<!-- Optional: some overlay text to describe the video -->
@@ -92,21 +139,21 @@
 						Popular destinations include: Your local brewery, Veternarian Appointments, Grooming, and
 						convient trips around town. </p>
 
-					<a class="regButton" href="./client.html#Rider"><i class="icon-eye"></i>Ride</a>
-					<a class="regButton" href="./driver.html#Driver"><i class="icon-eye"></i>Drive</a>
+					<a class="regButton" href="/client?username=autumnkelleyfabulous"><i class="icon-eye"></i>Ride</a>
+					<a class="regButton" href="/driver?username=TheJacquiCohen"><i class="icon-eye"></i>Drive</a>
 				</div>
 
 			</div>
 			<!--End container-->
 		</section>
 
-		<!-- <section id="spacer" class=" offset section bBottom">
+		<section id="spacer" class=" offset section bBottom" >
 
-			<div class="container clearfix">
+			<div class="container clearfix"position="center">
 				<div class="sixteen columns bottom3">
 				</div>
 			</div>
-		</section> -->
+		</section>
 
 		<!--Footer-->
 		<footer class="footer offset">
@@ -138,8 +185,6 @@
 						<h2>Call Us</h2>
 						<ul>
 							<li>+ 123-456-789-890</li>
-							<!-- <li>+ 123-456-789-456</li> -->
-
 						</ul>
 					</div>
 
@@ -167,7 +212,7 @@
 	<div class="eight columns">
 		<p>© 2019_Final Project_Autumn Kelley Barr</p> </div>
 			
-					<div class="eight columns"> 
+					<div class="eight columns"position="center" > 
 						<a href="#">Home</a>
 						<a href="https://github.com/autumnkelleyfabulous">GitHub</a>
 						<a href="https://autumnkelleyfabulous.github.io/portfolio3update/">Portfolio</a>
@@ -175,9 +220,12 @@
 					</div>
 
 					<div class="eight columns red">
-						<div class="right">
+							<div class="right">
+									Made with <span style="color: #e25555;">&#9829;</span> in Colorado
+								</div>
+						<!-- <div class="right">
 							<p>Made With <i class="icon-heart"></i> In Colorado.</p>
-						</div>
+						</div> -->
 
 					</div>
 
@@ -187,10 +235,103 @@
 	</div>
 	</footer>
 	</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<!--Javascript-->
-	<!-- <script src="js/jquery.scrollTo-min.js" type="text/javascript"></script>
-	<script src="../NEW/DOCUMENTATION/assets/js/script.js" type="text/javascript"></script> -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+// class App extends React.Component {
+//   state = { show: false }
+
+//   showModal = () => {
+//     this.setState({ show: true });
+//   }
+  
+//   hideModal = () => {
+//     this.setState({ show: false });
+//   }
+    
+//   render() {
+//     return (
+//       <main>
+//         <h1>React Modal</h1>
+//         <Modal show={this.state.show} handleClose={this.hideModal} >
+//           <p>Modal</p>
+//           <p>Data</p>
+//         </Modal>
+//         <button type='button' onClick={this.showModal}>Open</button>
+//       </main>
+//     )
+//   }
+// }
+
+// const Modal = ({ handleClose, show, children }) => {
+//   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+
+//   return (
+//     <div className={showHideClassName}>
+//       <section className='modal-main'>
+//         {children}
+//         <button
+//           onClick={handleClose}
+//         >
+//           Close
+//         </button>
+//       </section>
+//     </div>
+//   );
+// };
+
+
+// const container = document.createElement('div');
+// document.body.appendChild(container);
+// ReactDOM.render(<App />, container);
+
+// $("#login").on('click', getUser);
+// function addUser(event) {
+//   event.preventDefault();
+
+  // Super basic validation - increase errorCount variable if any fields are blank
+  // var errorCount = 0;
+  // $('#addUser input')
+  // var getUser = {
+  //   'username': $('#username').val(),
+    // 'phone': $('#phone').val(),
+    // 'email': $('#email').val(),
+    // 'dogName': $('#dogName').val(),
+    // 'password': $('#password').val(),
+    // 'location': $('#location').val()
+  // }
+
+  // Use AJAX to post the object to our adduser service
+//   $.ajax({
+//     type: 'POST',
+//     data: getUser,
+//     url: '/client?username = + username',
+//     dataType: 'JSON'
+//   }).done(function (response) {
+//     $('#myInput').trigger('focus')
+//   })
+// }
+
+
+
+// $('#login').on('shown.bs.modal', function () {
+//   $('#myInput').trigger('focus')
+// })
+// $('#login-modal').on('shown.bs.modal', function () {
+//   $('#login-modal').trigger('focus')
+// })
+	// $(".login").on("click", function() {
+	// 	$("#login-modal").addClass("is-active");
+	// 	$("#signup-modal").removeClass("is-active");
+	//   });
+// 	  $("#login").on("click", function() {
+// //   $("#signup-modal").modal("hide");
+//   $("#login-modal").modal("toggle");
+// })
+</script>
 
 </body>
 </html> 

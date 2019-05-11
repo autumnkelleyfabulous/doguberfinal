@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
+	<title>Client <%= username %> </title>
+	<link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
+
+</head>
+
+<body data-username="<%=username %>">
+	<!--Wrapper-->
+	<div id="wrapper">
+		<!--Header-->
+		<header id="header">
+			<!--Main header-->
+			<div class="mainHeader">
+				<!--Container-->
+				<div class="container clearfix">
+					<div class="one-third column">
+						<!--Logo-->
+						<div class="logo">
+							<a href="project.html">
+								<h1>DOG UBER</h1>
+							</a>
+						</div>
+						<!--End logo-->
+					</div>
+					<div class="two-thirds column">
+						<!--Navigation-->
+						<nav id="mainNav">
+							<a href="#" class="mobileBtn"><i class="icon-menu"></i></a>
+							<ul>
+								<li><a href="client">Rider</a></li>
+								<li><a href="driver">Driver</a></li>
+								<li><a href="signup">Sign Up</a></li>
+							</ul>
+						</nav>
+						<!--End navigation-->
+					</div>
+					<!--End container-->
+				</div>
+				<!--End main header-->
+				<!--Top socials-->
+				<!-- <div class="topSocials">
+					<ul class="one columns">
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-gplus"></i></a></li>
+					</ul>
+					<ul class="one columns">
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-pinterest"></i></a></li>
+					</ul>
+				</div> -->
+				<!--End top socials-->
+
+			</div>
+		</header>
+		<div class="clear"></div>
+
+		</header>
+		<section class="sub-head1" position="center">
+
+			<div class="wrapper">
+				<ul class="plain">
+					<li>
+						<h1 class="titleBig1">Hello <%= username %></h1>
+					</li>
+				</ul>
+
+			</div>
+		</section>
+		<div class="clear"></div>
+		<section id="projectDesc" class="offset section bBottom">
+
+			<div class="container clearfix">
+
+				<div class="sixteen columns bottom3">
+
+					<h2 align="center"> Personal Details: </h2>
+					<div id="clientDetails"></div>
+					<h2 align="center"> Driver Details: </h2>
+					<div id="driverDetails"></div>
+
+					<h4 id="notification"> </h4>
+
+					<button onclick="requestARide()">
+						Request A Ride</button>
+		<!-- </section> -->
+	</div>
+	</div>
+	</div>
+	<div id="map" style='width: 900px; height: 600px;' position="center"></div>
+
+
+
+</section>
+
+	<footer class="footer offset">
+
+		<!-- Top footer -->
+		<div class="topFooter">
+			<!--Container-->
+			<div class="container clearfix">
+
+				<div class="four columns">
+					<h2>Adresse</h2>
+					<p>Dog Uber Inc.<br>
+						124 Conch Street, Bikini Bottom<br>
+						IN 143 ILY.</p>
+				</div>
+
+				<div class="four columns">
+					<h2>Social</h2>
+					<ul>
+						<li><a href="#">FaceBook</a></li>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="">Google Plus</a></li>
+						<li><a href="#">Pinterest</a></li>
+						<li><a href="#">LinkedIn</a></li>
+					</ul>
+				</div>
+
+				<div class="four columns">
+					<h2>Call Us</h2>
+					<ul>
+						<li>+ 123-456-789-890</li>
+
+
+					</ul>
+				</div>
+
+				<div class="four columns">
+					<h2>Our Email</h2>
+
+					<ul>
+						<li><a href="#">press@doguber.com</a></li>
+						<li><a href="#">support@doguber.com</a></li>
+
+					</ul>
+
+				</div>
+
+			</div>
+			<!--End container-->
+		</div>
+		<!--End top footer-->
+
+		<!--Bottom footer-->
+		<div class="bottomFooter">
+			<!--Container-->
+			<div class="container clearfix">
+
+				<div class="eight columns">
+					<p>© 2019_Final Project_Autumn Kelley Barr</p>
+				</div>
+
+				<div class="eight columns">
+					<a href="#">Home</a>
+					<a href="https://github.com/autumnkelleyfabulous">GitHub</a>
+					<a href="https://autumnkelleyfabulous.github.io/portfolio3update/">Portfolio</a>
+					<a href="https://www.linkedin.com/in/autumn-barr-0a0babb9/">Linkedin</a>
+				</div>
+
+				<div class="eight columns red">
+						<div class="right">
+								Made with <span style="color: #e25555;">&#9829;</span> in Colorado
+							</div>
+
+				</div>
+
+			</div>
+			<!--End container-->
+		</div>
+		</div>
+	</footer>
+	</div>
+	<!--Load JavaScripts -->
+
+	<!-- Load socket.io client library -->
+	<script src="/socket.io/socket.io.js"> </script>
+	<!-- Load JQuery from a CDN -->
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js"></script>
+
+	<script type="text/javascript">
+		var socket = io();
+
+		//Fetch userId from the data-atribute of the body tag
+		var username = document.body.getAttribute("data-username");
+		/*Fire a 'join' event and send your userId to the server, to join a room - room-name will be the userId itself!
+		 */
+		socket.emit('join', {
+			username: username
+		});
+
+		//Declare variables, this will be used later
+		var requestDetails = {};
+		var clientDetails = {};
+		var driverDetails = {};
+		var map, marker;
+
+		//Client's info
+		
+
+		$.ajax({
+			url: "/clientdata/info?username=" + username,
+			type: "GET",
+			dataType: "json",
+			success: function (data) { //Once response is successful
+				clientDetails = data.clientDetails; //Save the driver details
+				clientDetails.location = {
+					address: clientDetails.location.address,
+					longitude: clientDetails.location.coordinates[0],
+					latitude: clientDetails.location.coordinates[1],
+
+				};
+				requestDetails = {
+                clientName: username,
+                location: {
+                    address: clientDetails.location.address,
+                    latitude: clientDetails.location.latitude,
+                    longitude: clientDetails.location.longitude
+				}  
+			}
+
+				document.getElementById("clientDetails").innerHTML = JSON.stringify(data.clientDetails);
+		
+			
+				L.mapbox.accessToken ="pk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5mNnUyZzA1MTQzeXBpdnc3dWNhcjgifQ.s219dVd-z6iQ0FKNHhnMNQ";
+
+				map = L.mapbox.map("map", "mapbox.streets");
+
+				map.setView([clientDetails.location.latitude,
+					clientDetails.location.longitude
+				], 15);
+
+				marker = L.marker([clientDetails.location.latitude,
+					clientDetails.location.longitude
+				]).addTo(map);
+
+				map.addControl(L.mapbox.geocoderControl("mapbox.places", {
+					autocomplete: true, //will suggest for places as you type
+				}).on("select", function (data) {
+					//This function runs when a place is selected
+					//data contains the geocoding results
+					console.log(data);
+					// Do something with the results
+					//Set the marker to new location
+					requestDetails.location = {
+						address: data.feature["place_name"],
+						latitude: data.feature.center[1],
+						longitude: data.feature.center[0]
+					};
+					//Set the marker to new location
+					marker.setLatLng([data.feature.center[1], data.feature.center[0]]);
+				
+					L.marker([driverDetails.location.latitude,driverDetails.location.longitude], {
+
+icon: L.icon({
+    iconUrl: "/assets/images/dogpin.jpg", //image path
+    iconSize: [60, 28] //in pixels
+})
+}).addTo(map);
+}));
+           },
+			error: function(httpRequest, status, error){
+				console.log(error);
+			}
+				
+});
+
+
+
+function requestARide() {
+		    socket.emit("request-a-ride", requestDetails);
+		}
+
+		//         //Listen for a "ride-accepted" event
+		socket.on("ride-accepted", function (eventData) {
+		    driverDetails = eventData; //Save driver details
+
+		    //Display driver details
+		    document.getElementById("notification").innerHTML =
+		        "Your Personal Pet Concierge Is On Their Way! \n" + JSON.stringify(driverDetails);
+		// 
+        });
+
+		
+		
+	</script>
+</body>
+
+</html>

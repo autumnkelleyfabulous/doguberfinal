@@ -1,4 +1,51 @@
 
+function fetchNearestclientdata(db, coordinates, callback) {
+
+    db.collection('clientdata').createIndex({
+        "location": "2dsphere"
+    }, function() {
+        console.log(coordinates)
+        db.collection("clientdata").find({
+            location: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: coordinates
+                    },
+                    $maxDistance: 40000
+                }
+            }
+        }).toArray(function(err, results) {
+            if(err) {
+                console.log(err)
+            }else {
+                console.log(results)
+                callback(results);
+            }
+        });
+    });
+}    
+function fetchClientDetails(db, username, callback) {
+    db.collection("clientdata").findOne({
+        // userId: userId,
+        username: username,
+        // dogName: dogName,
+    }, function(err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback({
+                // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
+                // userId: results.userId,
+                clientName: results.username,
+                phone: results.phone,
+                dogName: results.dogName,
+                location: results.location
+            });
+        }
+    });
+}
+
 
 function fetchNearestdriverdata(db, coordinates, callback) {
 
@@ -38,7 +85,7 @@ function fetchDriverDetails(db, username, callback) {
             callback({
                 // driverId: results.userId,driverId: results.userId, should i use _id, or driver id? not sure how to start this to call for the info from the database
                 // userId: results.userId,
-                username: results.username,
+                driverName: results.username,
                 phone: results.phone,
                 location: results.location
             });
@@ -46,12 +93,12 @@ function fetchDriverDetails(db, username, callback) {
     });
 }
 // // //Saves details like client’s location, time
-function saveRequest(db, requestId, requestTime, location, clientId, status, callback){
-    db.collection('requestsdata').insert({
+function saveRequest(db, requestId, requestTime, location, username, status, callback){
+    db.collection('requestsData').insert({
         "_id": requestId,
         "requestTime": requestTime,
         "location": location,
-        "clientusername": clientId,
+        "clientName": username,
         "status": status
     }, function(err, results){
            if(err) {
@@ -61,13 +108,13 @@ function saveRequest(db, requestId, requestTime, location, clientId, status, cal
            }
     });
 }
-function updateRequest(db, issueId, driverId, status, callback) {
-    db.collection('requestsdata').update({
-        "_id": issueId 
+function updateRequest(db, requestId, driverName, status, callback) {
+    db.collection('requestsData').update({
+        "_id": requestId 
     }, {
         $set: {
             "status": status, //Update status to 'engaged'
-            "driverId": driverId //save driver's userId
+            "driverId": driverName //save driver's userId
         }
     }, function(err, results) {
         if (err) {
@@ -97,6 +144,9 @@ function fetchRequests(db, callback) {
     });
 }
 
+
+exports.fetchNearestclientdata = fetchNearestclientdata;
+exports.fetchClientDetails = fetchClientDetails;
 exports.fetchNearestdriverdata = fetchNearestdriverdata;
 exports.fetchDriverDetails = fetchDriverDetails;
 exports.saveRequest = saveRequest;

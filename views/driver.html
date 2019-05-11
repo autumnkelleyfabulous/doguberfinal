@@ -3,13 +3,15 @@
 
 <head>
   <meta charset="utf-8" />
-  <title> Driver <%= username %> </title>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
+  <title> Driver <%= username %> </title>
   <link href="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css" rel="stylesheet" />
+
   
 </head>
 
-<body>
+<body data-username="<%= username %>"> 
     <div id="wrapper">
         <!--Header-->
         <header id="header">
@@ -33,7 +35,7 @@
                   <ul>
                     <li><a href="client">Rider</a></li>
                     <li><a href="driver">Driver</a></li>
-                    <li><a href="home.html#contact">Sign Up</a></li>
+                    <li><a href="signup">Sign Up</a></li>
                   </ul>
                 </nav>
                 <!--End navigation-->
@@ -55,16 +57,32 @@
             <!--End top socials-->
           </div>
         </header>
+        <div class="clear"></div>
+
+      </header>
+   <section class="sub-head2" position="center">
+
+           <div class="wrapper">
+               <ul class="plain">
+                    <li>
+                      <h1 class="titleBig2">Hello <%= username %></h1>
+                    </li>
+               </ul>
+               
+   </div>
+    
+   </section>
+   <div class="clear"></div>
         <section id="projectDesc" class="offset section bBottom">
 
   <div class="container clearfix">
            
   <div class="sixteen columns bottom3">
            
-  <!-- <div data-username="<%= username %>"> -->
-  <h1 class="titleBig">Hello Driver <%= username %></h1>
-  <h2 align="center"> Driver Details: </h2>
+  <h2 align="center"> Personal Details: </h2>
   <div id="driverDetails"></div>
+
+
 
   <h4 id="notification"> Waiting For Requests...</h4>
 
@@ -72,10 +90,14 @@
     Accept Ride</button>
   </div>
 </div>
-
+</div>
   <div id="map" style="width: 900px; height: 600px;" position="center"></div>
-  </section>
-    <!--  load a map here later-->
+  <style>
+     
+      #map { border-color: gold; }
+      </style>
+</section>
+   <!--  load a map here later-->
     <footer class="footer offset">
 
         <!-- Top footer -->
@@ -105,8 +127,7 @@
               <h2>Call Us</h2>
               <ul>
                 <li>+ 123-456-789-890</li>
-                <!-- <li>+ 123-456-789-456</li> -->
-  
+             
               </ul>
             </div>
   
@@ -142,9 +163,9 @@
             </div>
   
             <div class="eight columns red">
-              <div class="right">
-                <p>Made With <i class="icon-heart"></i> In Colorado.</p>
-              </div>
+                <div class="right">
+                    Made with <span style="color: #e25555;">&#9829;</span> in Colorado
+                  </div>
   
             </div>
   
@@ -154,16 +175,16 @@
     </div>
     </footer>
       </div> 
-  </body>
-  </html>
+
+
 
   <!--Load JavaScripts -->
   <!-- Load socket.io client library -->
   <script src="/socket.io/socket.io.js"> </script>
  
   <!-- Load JQuery from a CDN -->
-  <script type="text/javascript" 
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 
   <!-- load libraries before your JS code
@@ -203,9 +224,32 @@ console.log("Driver Connected");
         };
        
         document.getElementById("driverDetails").innerHTML = JSON.stringify(data.driverDetails);
+
+        L.mapbox.accessToken = "pk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5mNnUyZzA1MTQzeXBpdnc3dWNhcjgifQ.s219dVd-z6iQ0FKNHhnMNQ";
+
+        map = L.mapbox.map("map", "mapbox.streets");
+
+        map.setView([driverDetails.location.latitude, 
+        driverDetails.location.longitude], 9);
+        
+        marker = L.marker([driverDetails.location.latitude, 
+        driverDetails.location.longitude]).addTo(map);
+
+        map.addControl(L.mapbox.geocoderControl("mapbox.places", {
+          autocomplete: true, //will suggest for places as you type
+        }).on("select", function (data) {
+          //This function runs when a place is selected
+          //data contains the geocoding results
+          console.log(data);
+          // Do something with the results
+          //Set the marker to new location
+          marker.setLatLng([data.feature.center[1],data.feature.center[0]]);
+        }));
+
       },
       error: function(httpRequest, status, error){
         console.log(error);
+          
     }
 });
 
@@ -216,38 +260,19 @@ console.log("Driver Connected");
       requestDetails = eventData; //Contains info of client
 // //       //display the data received from the event
       document.getElementById("notification").innerHTML = "Someone needs a ride! \n" + JSON.stringify(requestDetails);
-    });
+      console.log("EVENT DETAILS");
+        console.log(eventData);
+        console.log("DRIVER DETAILS");
+        console.log(driverDetails);
 
-        L.mapbox.accessToken = "pk.eyJ1IjoiYXV0dW1ua2VsbGV5ZmFiIiwiYSI6ImNqdW5mNnUyZzA1MTQzeXBpdnc3dWNhcjgifQ.s219dVd-z6iQ0FKNHhnMNQ";
-        //Load the map and give it a default style
-        map = L.mapbox.map("map", "mapbox.streets");
-        //set it to a cop's lat-lng and zoom level
-        map.setView([driverDetails.location.latitude, 
-        driverDetails.location.longitude], 9);
-        //Display a default marker
-        marker = L.marker([driverDetails.location.latitude, 
-        driverDetails.location.longitude]).addTo(map);
-
-        //This will display an input box
-        map.addControl(L.mapbox.geocoderControl("mapbox.places", {
-          autocomplete: true, //will suggest for places as you type
-        }).on("select", function (data) {
-          //This function runs when a place is selected
-          //data contains the geocoding results
-          console.log(data);
-          //Do something with the results
-          //Set the marker to new location
-          marker.setLatLng([data.feature.center[1],data.feature.center[0]]);
-        }));
-  
-    //Show citizen location on the map
-L.marker([requestDetails.location.latitude, requestDetails.location.longitude], {
+        L.marker([requestDetails.location.latitude, requestDetails.location.longitude], {
     icon: L.icon({
-       iconUrl: "./public/img/dogpin.jpg",
+       iconUrl: "/assets/images/dogpin.jpg",
        iconSize: [50,50]
     })
 }).addTo(map);
-    
+    });
+
     function acceptRide() {
       //Fire a "request-accepted" event/signal and send relevant info back to server
       console.log("buton")
@@ -257,6 +282,5 @@ L.marker([requestDetails.location.latitude, requestDetails.location.longitude], 
       });
     }
   </script> 
-
-
+  </body>
 </html>
