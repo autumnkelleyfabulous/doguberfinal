@@ -6,14 +6,14 @@
 	<title>Dog Uber-homepage</title>
 
 	<!--Stylesheet-->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/project.css">
 	<link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 
 <!-- 	
 	<link href="https://fonts.googleapis.com/css?family=Acme|Julius+Sans+One|Montserrat+Alternates:bold+Sans-serif" rel="stylesheet">
@@ -53,12 +53,13 @@
 						</nav>
 						<!--End navigation-->
 					</div>
+					
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true" style="background-image: url(/assets/images/signin.png)">
 					<div class="modal-dialog" role="document"> 
 					   <div class="modal-content"> 
 						 <div class="modal-header">
-						   <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						   <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
 						 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						  </button> 
@@ -67,68 +68,24 @@
 							<div class="modal-background"</div>
 						<div class="modal-card">
 						  <header class="modal-card-head">
+									<form action="/" method="POST">
+										<div class="field">
 							<p class="modal-card-title">Login</p>
 							<p class="comment-form-username"><input id="username" name="username" placeholder="Username" type="text"
 								value="" size="30"></p>
-							<p class="comment-form-phone"><input id="phone" name="phone" placeholder="Phone" type="text" value=""
-								size="30"></p>
-							<p class="comment-form-email"><input id="email" name="email" placeholder="Email" type="text" value=""
-								size="30"></p>
-							<p class="comment-form-petName"><input id="petName" name="petName" placeholder="Pet's Name" type="text"
-								value="" size="30"></p>
 							<p class="comment-form-password"><input id="password" name="password" placeholder="password" type="text"
-								value="" size="30"></p>
-								<p class="comment-form-location"><input id="Location" name="Location" placeholder="Location(Address)" type="text"
-									value="" size="30"></p>
-							<!-- <button class="delete" aria-label="close"></button>
-						  </header>
-							  <section class="modal-card-body">
-								<!-- Content ... -->
-								<!-- <form action="/profile" method="POST">
-								  <div class="field">
-									<label class="label">Username</label>
-									<div class="control has-icons-left has-icons-right">
-									  <input class="input" type="text" name="username" placeholder="Enter Username">
-									  <span class="icon is-small is-left">
-										<i class="fas fa-user"></i>
-									  </span>
-									  <span class="icon is-small is-right">
-										<i class="fas fa-check"></i>
-									  </span>
-									</div>
-								  </div>
-						  
-								  <div class="field">
-									<label class="label">Password</label>
-									<div class="control has-icons-left has-icons-right">
-									  <input class="input" type="password" name="password" placeholder="Enter Password">
-									  <span class="icon is-small is-left">
-										<i class="fas fa-lock"></i>
-									  </span>
-									  <span class="icon is-small is-right">
-										<i class="fas fa-check"></i>
-									  </span>
-									</div>
-								  </div> -->
-						  
-								  <div class="field">
-									<div class="control">
-									  <button class="button is-link" id="login">Login</button>
+								value="" size="30"></p> 
+										<button class="button is-link" id="login" >Login</button>
+							</field>
 									</div>
 								  </div>
 								</form>
 							  </section>
 							  <footer class="modal-card-foot">
-								<div class="container inline-block">
-								  <button class="button is-success is-small is-pulled-right signup-button">Sign Up </button>
-								  <p class="is-pulled-right">Don't have an account?</p>
-						  </div>
 						</div>
 					</div>
 					</div>
 					</div>
-							
-							  </footer>
 							</div>
 						  </div>
 						  
@@ -278,14 +235,91 @@
 	</div>
 	</footer>
 	</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
+// class App extends React.Component {
+//   state = { show: false }
 
-$('#login').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+//   showModal = () => {
+//     this.setState({ show: true });
+//   }
+  
+//   hideModal = () => {
+//     this.setState({ show: false });
+//   }
+    
+//   render() {
+//     return (
+//       <main>
+//         <h1>React Modal</h1>
+//         <Modal show={this.state.show} handleClose={this.hideModal} >
+//           <p>Modal</p>
+//           <p>Data</p>
+//         </Modal>
+//         <button type='button' onClick={this.showModal}>Open</button>
+//       </main>
+//     )
+//   }
+// }
+
+// const Modal = ({ handleClose, show, children }) => {
+//   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+
+//   return (
+//     <div className={showHideClassName}>
+//       <section className='modal-main'>
+//         {children}
+//         <button
+//           onClick={handleClose}
+//         >
+//           Close
+//         </button>
+//       </section>
+//     </div>
+//   );
+// };
+
+
+// const container = document.createElement('div');
+// document.body.appendChild(container);
+// ReactDOM.render(<App />, container);
+
+// $("#login").on('click', getUser);
+// function addUser(event) {
+//   event.preventDefault();
+
+  // Super basic validation - increase errorCount variable if any fields are blank
+  // var errorCount = 0;
+  // $('#addUser input')
+  // var getUser = {
+  //   'username': $('#username').val(),
+    // 'phone': $('#phone').val(),
+    // 'email': $('#email').val(),
+    // 'dogName': $('#dogName').val(),
+    // 'password': $('#password').val(),
+    // 'location': $('#location').val()
+  // }
+
+  // Use AJAX to post the object to our adduser service
+//   $.ajax({
+//     type: 'POST',
+//     data: getUser,
+//     url: '/client?username = + username',
+//     dataType: 'JSON'
+//   }).done(function (response) {
+//     $('#myInput').trigger('focus')
+//   })
+// }
+
+
+
+// $('#login').on('shown.bs.modal', function () {
+//   $('#myInput').trigger('focus')
+// })
 // $('#login-modal').on('shown.bs.modal', function () {
 //   $('#login-modal').trigger('focus')
 // })

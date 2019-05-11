@@ -1,6 +1,8 @@
 
 /* VIDEo */
-
+.modal-backdrop {
+  z-index: -1;
+}
 /* Style the video: 100% width and height to cover the entire window */
 #myVideo {
   position: fixed;
@@ -104,45 +106,27 @@ html {
 	font-weight: normal;
 
 }
+#projectDesc {
+  background-image: url(https://media.giphy.com/media/26BRqen6jfVVnwZB6/giphy.gif);
+  /* padding-bottom: 100px; */
+ 
+}
 
-/* LOGIN BOx */
+.bottom3 {
+  font-family: 'Montserrat Alternates';
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .75px;
+  -webkit-text-stroke-color: #ff63e0;
+  font-size: 20px;
+  background: rgb(224, 167, 255);
+  box-sizing: border-box;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  float:right;
+  size: 900px;
+} 
 
-/* #comments{
-  margin-top: 80px;  
-     font-family: "Montserrat Alternates" !important;
-     color: #444 !important;
- 
- } */
- 
- /* .num{
-   background: url(/public/assets/images/signin.png);
-   width: 28px;
-   height: 34px;
-   padding-left: 8px;
-   line-height: 26px;
-   display: inline-block;
-     position:absolute;
-   font-style: italic !important;
-     font-family: 'Montserrat Alternates';
-     
- }
-  */
- 
- /* .comments-title{
-       letter-spacing: 2px;
- } */
- 
- /* #comments ol li{
-     list-style: decimal !important;
-     margin-left: 30px;
-     margin-bottom: 20px;
- }
-  */
-/* .comment-author img{
-  display: none;   
- }
-  */
- 
  #respond{
    position: right;
    width: 925px;
@@ -566,36 +550,6 @@ border-bottom: solid 2px #87edc2;
   margin: 0 auto;
   position: relative;
 }
-
-/* .caption {
-    top: 49.4%;
-    left: 0;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-	text-transform: uppercase;
-}
-
-.caption h1{
-	font-size: 25px;
-}
-
-
-.caption h1 span.new{
-	position:relative;
-}
-
-.caption h1 span.new:after{
-	border-bottom: 4px solid #111111;
-    content: "";
-    display: block;
-    position: absolute;
-    right: 4px;
-    top: 33px;
-    width: 19px;
-    z-index: 0;
-} */
-
 
 /*Footer*/
 
@@ -1146,7 +1100,7 @@ nav#mainNav li, .skillbarTitle,
 ================================================== */
 
     /* Self Clearing Goodness */
-    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+    .container:after { content: "\0020"; display: block; height: 10; clear: both; visibility: hidden; }
 
     /* Use clearfix class on parent to clear nested columns,
     or wrap each row of columns in a <div class="row"> */

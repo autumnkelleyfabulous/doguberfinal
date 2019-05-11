@@ -73,8 +73,9 @@
 			</div>
 		</section>
 		<div class="clear"></div>
-		<section id="projectDesc" class="offset section bBottom">
-
+		<!-- <div class= "overlay"></div> -->
+		<section id="projectDesc" class="offset section bBottom" >
+				
 			<div class="container clearfix">
 
 				<div class="sixteen columns bottom3">
@@ -186,38 +187,7 @@
 	<script src="https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js"></script>
 
 	<script type="text/javascript">
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.clo>udflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript">
-   // Add Submit button click event
-$("#submit").on('click', addUser);
-function addUser(event) {
-  event.preventDefault();
-
-  // Super basic validation - increase errorCount variable if any fields are blank
-  // var errorCount = 0;
-  // $('#addUser input')
-  var newUser = {
-    'username': $('#username').val(),
-    'phone': $('#phone').val(),
-    'email': $('#email').val(),
-    'petName': $('#petName').val(),
-    'password': $('#password').val()
-  }
-
-  // Use AJAX to post the object to our adduser service
-  $.ajax({
-    type: 'POST',
-    data: newUser,
-    url: '/sign-up-success',
-    dataType: 'JSON'
-  }).done(function (response) {
-    $('#myInput').trigger('focus')
-  })
-}
+	
 		var socket = io();
 
 		//Fetch userId from the data-atribute of the body tag
