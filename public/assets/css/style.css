@@ -276,20 +276,24 @@ header{
 
 
 .logo{
+  
 	 margin: 26px 0 20px 0;
 }
 
 
 .logo h1 {
+  font-family: 'Montserrat Alternates';
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .75px;
+  -webkit-text-stroke-color: black;
     display: inline-block;
-    font-size: 22px;
+    font-size: 30px;
     text-transform: uppercase;
 	color:#111111;
 	position:relative;
 }
 
-
-.logo h1:after {
+ /* .logo h1:after {
     border-bottom: 4px solid #111111;
     content: "";
     display: block;
@@ -298,7 +302,7 @@ header{
     top: 23px;
     width: 14px;
     z-index: 0;
-}
+}  */
 
 nav#mainNav{
 	float:right;
@@ -306,13 +310,22 @@ nav#mainNav{
 }
 
 nav#mainNav li {
-  font-family:"Montserrat Alternates";
+  
+  font-family: 'Montserrat Alternates';
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .75px;
+  -webkit-text-stroke-color: #ff63e0;
 	display: inline-block;
 	position:relative;
 }
 
 nav#mainNav li a{
-  font-family: "Montserrat Alternates";
+  font-family: 'Montserrat Alternates';
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .75px;
+  -webkit-text-stroke-color: black;
+  font-size: 25px;
+  /* font-family: "Montserrat Alternates"; */
     color: #111111;
     display: block;
     padding: 25px 15px;
@@ -564,6 +577,7 @@ border-bottom: solid 2px #87edc2;
 }
 
 .topFooter h2{
+
 	text-transform: uppercase;
 	position:relative;
 	display:inline-block;
